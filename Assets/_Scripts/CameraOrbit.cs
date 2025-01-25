@@ -20,11 +20,13 @@ public class CameraOrbit : MonoBehaviour
 
 
     InputAction cancel;
+    InputAction camControl;
 
     void Start()
     {
         mouseMovement = InputSystem.actions.FindAction("Look");
         cancel = InputSystem.actions.FindAction("Cancel");
+        camControl = InputSystem.actions.FindAction("CameraControl");
 
         Cursor.lockState = CursorLockMode.Locked;
     }
