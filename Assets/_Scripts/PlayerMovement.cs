@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     // MOVEMENT
     InputAction movementInput;
     Vector2 movementVector;
+    Vector3 relativeMovementVector;
 
     [Header("Movement Stats")]
     [SerializeField] float moveSpeed;
@@ -27,11 +28,24 @@ public class PlayerMovement : MonoBehaviour
     {
         movementVector = movementInput.ReadValue<Vector2>() * moveSpeed;
 
-        print("Movement Vector: " +  movementVector);
+        //print("Movement Vector: " +  movementVector);
+
+
+        Vector3 camForward = cam.transform.forward;
+        Vector3 camRight = cam.transform.right;
+
+        camForward.y = 0f;
+
+        Vector3 forwardRelative = movementVector.y * camForward;
+        Vector3 rightRelative = movementVector.x * camRight;
+
+        relativeMovementVector = (forwardRelative + rightRelative).normalized * moveSpeed;
+        relativeMovementVector.y = 0f;
+
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector3(movementVector.x, rb.linearVelocity.y, movementVector.y);
+        rb.linearVelocity = new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.y);
     }
 }
