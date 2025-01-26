@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 movementVector;
     Vector3 relativeMovementVector;
-    Vector3 lateralMovementVector;
 
     [Header("Movement Stats")]
     [SerializeField] float acceleration;
@@ -57,6 +56,29 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!canJump && grounded)
+        {
+            jumpTimer += Time.deltaTime;
+            if (jumpTimer >= jumpCooldown)
+            {
+                jumpTimer = 0;
+                canJump = true;
+            }
+        }
+
+        if (!canDash && grounded)
+        {
+            dashTimer += Time.deltaTime;
+            if (dashTimer >= jumpCooldown)
+            {
+                dashTimer = 0;
+                canDash = true;
+            }
+        }
+
+
+
+
         movementVector = lateralInput.ReadValue<Vector2>();
 
         camForward = cam.transform.forward;
@@ -67,26 +89,26 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 forwardRelative = movementVector.y * camForward.normalized;
         Vector3 rightRelative = movementVector.x * camRight.normalized;
-        
-        relativeMovementVector = (forwardRelative + rightRelative).normalized * moveSpeed;
-        relativeMovementVector.y = 0f;
-
-        lateralMovementVector = new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.z);
 
         if (grounded)
         {
+            relativeMovementVector = (forwardRelative + rightRelative).normalized * moveSpeed;
+            relativeMovementVector.y = 0f;
+
+
             rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.z), acceleration * Time.deltaTime);
 
 
             if (jumpInput.WasPressedThisFrame())
             {
-                rb.AddRelativeForce(new Vector3(0f, jumpForce, 0f), ForceMode.VelocityChange);
+                canJump = false;
+                rb.AddRelativeForce(new Vector3(relativeMovementVector.x, jumpForce, relativeMovementVector.z), ForceMode.Impulse);
                 //rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpForce, rb.linearVelocity.z);
             }
             else if (dashInput.WasPressedThisFrame())
             {
-                print("DASH");
-                rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * dashForce, ForceMode.VelocityChange);
+                canDash = false;
+                rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * dashForce, ForceMode.Impulse);
             }
             else
             {
@@ -95,7 +117,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, new Vector3(relativeMovementVector.x / airStrafe, rb.linearVelocity.y, relativeMovementVector.z / airStrafe), acceleration * Time.deltaTime);
+            relativeMovementVector = (forwardRelative + rightRelative).normalized * (moveSpeed * airStrafe);
+            relativeMovementVector.y = 0f;
+
+
+            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.z), acceleration * Time.deltaTime);
             //rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) / 2, ForceMode.Acceleration);
         }
     }
@@ -110,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
     void GroundCheck()
     {
         grounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - (playerHeight / 2), transform.position.z), groundCheckRadius, groundLayer);
+        //grounded = Physics.Raycast(transform.position, Vector3.down, (playerHeight / 2) + 0.1f);
     }
 
     private void OnDrawGizmos()
@@ -119,6 +146,6 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawLine(playerPos, playerPos + relativeMovementVector);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, -(playerHeight / 2), 0), groundCheckRadius);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, -1 * (playerHeight / 2), 0), groundCheckRadius);
     }
 }
