@@ -10,7 +10,8 @@ public class Telekensis : MonoBehaviour
     [SerializeField] LayerMask objectLayer;
     [SerializeField] GameObject heldPart;
     [SerializeField] GameObject teleTarget;
-    [SerializeField] float flySpeed;
+    [field: SerializeField] public float TeleForce { get; private set; } = 5f;
+    [field: SerializeField] public float TeleSpeed { get; private set; } = 5f;
     Rigidbody partRB;
     bool holdingPart = false;
 
@@ -30,7 +31,11 @@ public class Telekensis : MonoBehaviour
         if (teleknesisAction.IsPressed() && heldPart != null && partRB != null)
         {
             //heldPart.transform.position = Vector3.MoveTowards(heldPart.transform.position, teleTarget.transform.position, flySpeed * Time.deltaTime);
-            partRB.linearVelocity = Vector3.MoveTowards(partRB.linearVelocity, (teleTarget.transform.position - heldPart.transform.position).normalized * flySpeed, flySpeed * Time.deltaTime);
+            partRB.linearVelocity = Vector3.MoveTowards(partRB.linearVelocity, (teleTarget.transform.position - heldPart.transform.position).normalized * TeleForce, TeleSpeed * Time.deltaTime);
+            if (partRB.linearVelocity.magnitude > Vector3.Magnitude(heldPart.transform.position - teleTarget.transform.position))
+            {
+                partRB.linearVelocity = Vector3.ClampMagnitude(partRB.linearVelocity, Vector3.Magnitude(heldPart.transform.position - teleTarget.transform.position));
+            }
         }
         if (teleknesisAction.WasReleasedThisFrame())
         {
@@ -59,5 +64,19 @@ public class Telekensis : MonoBehaviour
                 partRB.useGravity = false;
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (holdingPart)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawLine(heldPart.transform.position, teleTarget.transform.position);
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(heldPart.transform.position, partRB.linearVelocity + heldPart.transform.position);
+        }
+
+        
     }
 }

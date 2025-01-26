@@ -9,6 +9,8 @@ public class PowerTest : MonoBehaviour
     InputAction powerInput;
     [SerializeField] GameObject blastCollider;
 
+    [SerializeField] float flySpeed = 50f;
+    [SerializeField] float blastForce = 5f;
     [SerializeField] float blastCooldown = 0.5f;
     float blastTimer = 0;
     bool canBlast = true;
@@ -40,18 +42,18 @@ public class PowerTest : MonoBehaviour
 
         if (powerInput.WasPressedThisFrame() && canBlast)
         {
-            LaunchBlast(pointerPos);
+            LaunchBlast(pointerPos, flySpeed, blastForce);
             canBlast = false;
         }
     }
 
-    void LaunchBlast(Vector3 posParam)
+    void LaunchBlast(Vector3 posParam, float flySpeedParam, float blastForceParam)
     {
         Vector3 targetDirection = posParam - transform.position;
 
         GameObject spawnedBlast = Instantiate(blastCollider, transform.position, Quaternion.identity);
         Blast blastScript = spawnedBlast.GetComponent<Blast>();
-        blastScript.FlyInDirection(targetDirection, posParam);
+        blastScript.FlyInDirection(targetDirection, posParam, flySpeedParam, blastForceParam);
         Destroy(spawnedBlast, 5f);
     }
 }

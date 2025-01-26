@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flySpeed: 35
-  blastForce: 5
+  blastForce: 100
   destroyDelay: 0.15
 --- !u!33 &3364571681717491413
 MeshFilter:
