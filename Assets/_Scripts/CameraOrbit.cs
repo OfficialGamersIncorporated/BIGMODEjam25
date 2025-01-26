@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class CameraOrbit : MonoBehaviour
 {
     [SerializeField] Transform orbitPoint;
+    [SerializeField] float yOffset;
     [SerializeField] float orbitSpeed = 3.0f;
     [SerializeField] float orbitDampening = 10.0f;
 
@@ -15,30 +16,24 @@ public class CameraOrbit : MonoBehaviour
 
     Vector3 localRotation;
 
-    InputAction mouseMovement;
-    Vector2 mouseVector;
-
 
     InputAction cancel;
     InputAction camControl;
 
     void Start()
     {
-        mouseMovement = InputSystem.actions.FindAction("Look");
         cancel = InputSystem.actions.FindAction("Cancel");
         camControl = InputSystem.actions.FindAction("CameraControl");
 
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Update()
     {
-        transform.position = new Vector3(orbitPoint.position.x, orbitPoint.position.y + 1, orbitPoint.position.z);
+        transform.position = new Vector3(orbitPoint.position.x, orbitPoint.position.y + yOffset, orbitPoint.position.z);
 
-        mouseVector = mouseMovement.ReadValue<Vector2>();
-        //print("Mouse Vector: " + mouseVector);
-        print("Mouse " + Mouse.current.delta.ReadValue());
 
+        // Cam move with mouse locked
         //if (Mouse.current.delta.ReadValue() != null)
         //{
 
@@ -52,7 +47,8 @@ public class CameraOrbit : MonoBehaviour
 
         //}
 
-        if (Input.GetMouseButton(1))
+        // Cam move when holding right click
+        if (camControl.IsPressed())
         {
 
             localRotation.x += Input.GetAxis("Mouse X") * orbitSpeed;
@@ -68,15 +64,7 @@ public class CameraOrbit : MonoBehaviour
 
         if (cancel.WasPressedThisFrame())
         {
-            if (Cursor.lockState == CursorLockMode.None)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else if(Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
