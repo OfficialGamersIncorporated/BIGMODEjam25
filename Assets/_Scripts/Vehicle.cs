@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Vehicle : MonoBehaviour {
     public float maxSteerRateOfChange = 2;
@@ -10,9 +9,11 @@ public class Vehicle : MonoBehaviour {
     public float steeringRange = 30;
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
+    public bool canBrakeAsReverse = true;
 
     public float SteeringInput = 0;
     public float ThrottleInput = 0;
+    public float BrakeInput = 0;
     public bool UrgencyInput = false;
 
     WheelControl[] wheels;
@@ -20,6 +21,9 @@ public class Vehicle : MonoBehaviour {
 
     float lastSteer = 0;
     float lastAccell = 0;
+    float lastBrake = 0;
+    bool lastIsBraking = false;
+    bool brakeAsReverse = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -39,9 +43,8 @@ public class Vehicle : MonoBehaviour {
 
         lastSteer = Mathf.MoveTowards(lastSteer, SteeringInput, maxSteerRateOfChange * Time.deltaTime);
         lastAccell = Mathf.MoveTowards(lastAccell, ThrottleInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
-
-        float vInput = lastAccell;
-        float hInput = lastSteer;
+        lastBrake = Mathf.MoveTowards(lastBrake, BrakeInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
+        float signedAccellInput = lastAccell - lastBrake;
 
         // Calculate current speed in relation to the forward direction of the car
         // (this returns a negative number when traveling backwards)
@@ -63,26 +66,39 @@ public class Vehicle : MonoBehaviour {
 
         // Check whether the user input is in the same direction 
         // as the car's velocity
-        bool isAccelerating = Mathf.Sign(vInput) == Mathf.Sign(forwardSpeed);
+        if (canBrakeAsReverse && forwardSpeed <= 1 && !lastIsBraking && BrakeInput > 0.1f) {
+            brakeAsReverse = true;
+        }
+        if(BrakeInput < 0.1f) brakeAsReverse = false;
+
+        bool isAccelerating;
+        if (canBrakeAsReverse)
+            isAccelerating = Mathf.Sign(signedAccellInput) == Mathf.Sign(forwardSpeed);
+        else
+            isAccelerating = lastBrake == 0; //Mathf.Sign(vInput) == Mathf.Sign(forwardSpeed);
 
         foreach(var wheel in wheels) {
             // Apply steering to Wheel colliders that have "Steerable" enabled
             if(wheel.steerable) {
-                wheel.WheelCollider.steerAngle = hInput * currentSteerRange;
+                wheel.WheelCollider.steerAngle = lastSteer * currentSteerRange;
             }
 
             if(isAccelerating) {
                 // Apply torque to Wheel colliders that have "Motorized" enabled
                 if(wheel.motorized) {
-                    wheel.WheelCollider.motorTorque = vInput * currentMotorTorque;
+                    float currAccell = lastAccell;
+                    if(brakeAsReverse) currAccell = signedAccellInput;
+                    wheel.WheelCollider.motorTorque = currAccell * currentMotorTorque;
                 }
                 wheel.WheelCollider.brakeTorque = 0;
             } else {
                 // If the user is trying to go in the opposite direction
                 // apply brakes to all wheels
-                wheel.WheelCollider.brakeTorque = Mathf.Abs(vInput) * brakeTorque;
+                wheel.WheelCollider.brakeTorque = Mathf.Abs(signedAccellInput) * brakeTorque;
                 wheel.WheelCollider.motorTorque = 0;
             }
         }
+
+        lastIsBraking = BrakeInput > 0.1f;
     }
 }

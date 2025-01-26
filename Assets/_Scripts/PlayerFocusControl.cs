@@ -31,12 +31,16 @@ public class PlayerFocusControl : MonoBehaviour {
 
         if (playerFocus == PlayerFocus.Vehicle) {
             PlayerCar.SteeringInput = moveValue.x;
-            PlayerCar.ThrottleInput = moveValue.y;
+            PlayerCar.ThrottleInput = Mathf.Max(0, moveValue.y);
+            PlayerCar.BrakeInput = Mathf.Max(0, -moveValue.y);
             PlayerCar.UrgencyInput = sprintValue;
+            PlayerCar.canBrakeAsReverse = true;
         } else {
             PlayerCar.SteeringInput = 0;
             PlayerCar.ThrottleInput = 0;
+            PlayerCar.BrakeInput = 1;
             PlayerCar.UrgencyInput = false;
+            PlayerCar.canBrakeAsReverse = false;
         }
     }
 }
