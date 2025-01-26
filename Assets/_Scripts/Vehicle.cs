@@ -11,11 +11,12 @@ public class Vehicle : MonoBehaviour {
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
 
+    public float SteeringInput = 0;
+    public float ThrottleInput = 0;
+    public bool UrgencyInput = false;
+
     WheelControl[] wheels;
     Rigidbody rigidBody;
-
-    InputAction moveAction;
-    InputAction sprintAction;
 
     float lastSteer = 0;
     float lastAccell = 0;
@@ -29,19 +30,15 @@ public class Vehicle : MonoBehaviour {
 
         // Find all child GameObjects that have the WheelControl script attached
         wheels = GetComponentsInChildren<WheelControl>();
-
-        moveAction = InputSystem.actions.FindAction("Move");
-        sprintAction = InputSystem.actions.FindAction("Sprint");
     }
 
     // Update is called once per frame
     void Update() {
-        Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        bool sprintValue = sprintAction.IsPressed();
-        float sprintModifier = sprintValue ? 1.0f : 0.5f;
+        
+        float sprintModifier = UrgencyInput ? 1.0f : 0.5f;
 
-        lastSteer = Mathf.MoveTowards(lastSteer, moveValue.x, maxSteerRateOfChange * Time.deltaTime);
-        lastAccell = Mathf.MoveTowards(lastAccell, moveValue.y * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
+        lastSteer = Mathf.MoveTowards(lastSteer, SteeringInput, maxSteerRateOfChange * Time.deltaTime);
+        lastAccell = Mathf.MoveTowards(lastAccell, ThrottleInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
 
         float vInput = lastAccell;
         float hInput = lastSteer;

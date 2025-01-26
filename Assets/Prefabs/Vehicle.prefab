@@ -1025,6 +1025,7 @@ GameObject:
   - component: {fileID: 7875250480878344815}
   - component: {fileID: 838137100621057078}
   - component: {fileID: 2485832932051221731}
+  - component: {fileID: 437202211558085096}
   m_Layer: 0
   m_Name: Vehicle
   m_TagString: Untagged
@@ -1102,6 +1103,21 @@ MonoBehaviour:
   steeringRange: 40
   steeringRangeAtMaxSpeed: 10
   centreOfGravityOffset: -1
+  SteeringInput: 0
+  ThrottleInput: 0
+  UgencyInput: 0
+--- !u!114 &437202211558085096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8242602005101897119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ea6148ce10738429b98b435c0c888e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8683518260833359459
 GameObject:
   m_ObjectHideFlags: 0
