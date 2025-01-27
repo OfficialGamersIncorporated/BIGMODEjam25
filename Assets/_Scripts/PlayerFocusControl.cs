@@ -9,6 +9,7 @@ public class PlayerFocusControl : MonoBehaviour {
 
     Vehicle PlayerCar;
     PlayerMovement PlayerChar;
+    CameraOrbit CameraControl;
     PlayerFocus lastPlayerFocus = PlayerFocus.Vehicle;
 
     InputAction moveAction;
@@ -19,13 +20,23 @@ public class PlayerFocusControl : MonoBehaviour {
     void Start() {
         PlayerCar = GetComponentInChildren<Vehicle>();
         PlayerChar = GetComponentInChildren<PlayerMovement>();
+        CameraControl = GetComponentInChildren<CameraOrbit>();
 
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
         interactAction = InputSystem.actions.FindAction("Interact");
 
-        if(playerFocus == PlayerFocus.Vehicle) PlayerChar.gameObject.SetActive(false);
+        if(playerFocus == PlayerFocus.Vehicle) {
+            PlayerChar.gameObject.SetActive(false);
+            RefreshCameraTarget();
+        }
+    }
+    void RefreshCameraTarget() {
+        if(playerFocus == PlayerFocus.Character)
+            CameraControl.orbitPoint = PlayerChar.transform;
+        else
+            CameraControl.orbitPoint = PlayerCar.transform;
     }
     void Update() {
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
@@ -40,6 +51,8 @@ public class PlayerFocusControl : MonoBehaviour {
         }
 
         if (playerFocus != lastPlayerFocus){
+            RefreshCameraTarget();
+
             lastPlayerFocus = playerFocus;
         }
 
@@ -66,6 +79,11 @@ public class PlayerFocusControl : MonoBehaviour {
                 PlayerChar.isJumpPressed = jumpValue;
                 if(!PlayerChar.gameObject.activeSelf) {
                     PlayerChar.transform.position = PlayerCar.driverExitPosition.position;
+
+                    Rigidbody charBody = PlayerChar.GetComponent<Rigidbody>();
+                    Rigidbody carBody = PlayerCar.GetComponent<Rigidbody>();
+                    charBody.linearVelocity = carBody.linearVelocity;
+
                     PlayerChar.gameObject.SetActive(true);
                 }
             } else {

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class CameraOrbit : MonoBehaviour
 {
-    [SerializeField] Transform orbitPoint;
+    public Transform orbitPoint;
     [SerializeField] float yOffset;
     [SerializeField] float orbitSpeed = 3.0f;
     [SerializeField] float orbitDampening = 10.0f;
