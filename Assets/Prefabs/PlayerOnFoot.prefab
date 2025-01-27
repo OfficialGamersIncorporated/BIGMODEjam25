@@ -96,13 +96,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2199637832810541896}
   - component: {fileID: 7060780082368852001}
-  - component: {fileID: 8850994692343599747}
+  - component: {fileID: 7516227099623135471}
   - component: {fileID: 1826468281225232297}
   - component: {fileID: 6130288206776086159}
   - component: {fileID: 3024328098241150720}
   m_Layer: 7
   m_Name: PlayerOnFoot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,8 +141,9 @@ MonoBehaviour:
     m_Bits: 256
   heldPart: {fileID: 0}
   teleTarget: {fileID: 0}
-  flySpeed: 50
---- !u!114 &8850994692343599747
+  <TeleForce>k__BackingField: 100
+  <TeleSpeed>k__BackingField: 100
+--- !u!114 &7516227099623135471
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,8 +158,19 @@ MonoBehaviour:
   pointerPos: {x: 0, y: 0, z: 0}
   cam: {fileID: 0}
   raycastDistance: 1000
+  ignoreLayerMask:
+    serializedVersion: 2
+    m_Bits: 1408
   blastCollider: {fileID: 847058626648809991, guid: b1222b60a3c6885448c7d15b4a8e6187, type: 3}
+  flySpeed: 40
+  blastForce: 15
   blastCooldown: 0.5
+  wallCollider: {fileID: 8531924545030236827, guid: 596817497c115ec47b8f1a87ca9e641b, type: 3}
+  riseSpeed: 20
+  wallForce: 5
+  wallCooldown: 1
+  wallHeight: 4
+  wallLifeSpan: 2.5
 --- !u!114 &1826468281225232297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,9 +187,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   playerHeight: 2
   acceleration: 100
-  moveSpeed: 5
-  jumpForce: 5
-  dashForce: 5
+  moveSpeed: 7.5
+  jumpForce: 10
+  dashForce: 7.5
   airStrafe: 1
   canJump: 1
   jumpTimer: 0
@@ -189,7 +201,7 @@ MonoBehaviour:
   groundCheckRadius: 0.3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 321
 --- !u!136 &6130288206776086159
 CapsuleCollider:
   m_ObjectHideFlags: 0

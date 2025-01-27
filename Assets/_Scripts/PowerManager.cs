@@ -7,6 +7,7 @@ public class PowerTest : MonoBehaviour
     public Vector3 pointerPos;
     [SerializeField] Camera cam;
     [SerializeField] float raycastDistance = 1000;
+    [SerializeField] LayerMask ignoreLayerMask;
 
 
 
@@ -63,7 +64,7 @@ public class PowerTest : MonoBehaviour
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hitData, raycastDistance))
+        if (Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, ~ignoreLayerMask))
         {
             pointerPos = hitData.point;
         }
@@ -93,11 +94,16 @@ public class PowerTest : MonoBehaviour
     void RaiseWall(Vector3 posParam, float raiseSpeedParam, float wallForceParam, float wallHeightParam, float lifeSpanParam)
     {
         float startingHeight = posParam.y;
+        float spawnHeight = (posParam.y - (wallHeightParam / 2) - 0.01f);
 
         Vector3 targetDirection = posParam - transform.position;
 
         GameObject spawnedWall = Instantiate(wallCollider, new Vector3(posParam.x, posParam.y - (wallHeightParam / 2) - 0.01f, posParam.z), Quaternion.identity);
+
+        Quaternion rotation = Quaternion.LookRotation(new Vector3(spawnedWall.transform.position.x, transform.position.y, spawnedWall.transform.position.z) - transform.position, Vector3.up);
+        spawnedWall.transform.rotation = rotation;
+
         Wall wallScript = spawnedWall.GetComponent<Wall>();
-        wallScript.RaiseWall(startingHeight, raiseSpeedParam, wallForceParam, wallHeightParam, lifeSpanParam);
+        wallScript.RaiseWall(startingHeight, spawnHeight, raiseSpeedParam, wallForceParam, wallHeightParam, lifeSpanParam);
     }
 }

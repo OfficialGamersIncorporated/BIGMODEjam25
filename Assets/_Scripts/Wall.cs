@@ -21,20 +21,24 @@ public class Wall : MonoBehaviour
 
     private void Update()
     {
-        
 
-        if (transform.position.y < wallHeight + startingHeight)
+        if (transform.position.y < (wallHeight / 2) + startingHeight)
         {
             newYPos += Time.deltaTime * raiseSpeed;
             transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
+
+            if (transform.position.y > (wallHeight / 2) + startingHeight)
+            {
+                transform.position = new Vector3(transform.position.x, (wallHeight / 2) + startingHeight, transform.position.z);
+            }
         }
     }
 
 
-    public void RaiseWall(float startingHeightParam, float raiseSpeedParam, float wallForceParam, float wallHeightParam, float lifeSpanParam)
+    public void RaiseWall(float startingHeightParam, float spawnHeightParam, float raiseSpeedParam, float wallForceParam, float wallHeightParam, float lifeSpanParam)
     {
         startingHeight = startingHeightParam;
-        newYPos = startingHeightParam - wallHeightParam;
+        newYPos = spawnHeightParam;
         raiseSpeed = raiseSpeedParam;
         wallForce = wallForceParam;
         wallHeight = wallHeightParam;

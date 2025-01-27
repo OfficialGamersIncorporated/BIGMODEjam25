@@ -13810,14 +13810,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 302379407}
-    - target: {fileID: 1826468281225232297, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: acceleration
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1826468281225232297, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 321
-      objectReference: {fileID: 0}
     - target: {fileID: 2199637832810541896, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13862,46 +13854,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerOnFoot
       objectReference: {fileID: 0}
-    - target: {fileID: 5416502359397178880, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7060780082368852001, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: teleForce
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7060780082368852001, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: teleSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7060780082368852001, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
       propertyPath: teleTarget
       value: 
       objectReference: {fileID: 894114921}
-    - target: {fileID: 7060780082368852001, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: <TeleForce>k__BackingField
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7060780082368852001, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: <TeleSpeed>k__BackingField
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8850994692343599747, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
+    - target: {fileID: 7516227099623135471, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 302379407}
-    - target: {fileID: 8850994692343599747, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: wallHeight
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8850994692343599747, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: wallCollider
-      value: 
-      objectReference: {fileID: 8531924545030236827, guid: 596817497c115ec47b8f1a87ca9e641b, type: 3}
-    - target: {fileID: 8850994692343599747, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: wallLifeSpan
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
