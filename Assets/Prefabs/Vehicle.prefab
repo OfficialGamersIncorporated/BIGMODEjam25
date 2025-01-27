@@ -495,7 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5987386820051445144}
   m_Layer: 7
-  m_Name: GameObject
+  m_Name: DriverExitPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +510,7 @@ Transform:
   m_GameObject: {fileID: 7760410139762215495}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -1, z: 0.5}
+  m_LocalPosition: {x: -1.179, y: 0.339, z: 0.281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -699,6 +699,7 @@ MonoBehaviour:
   UrgencyInput: 0
   collider: {fileID: 5695243184088973403}
   centerOfGravity: {fileID: 6843729342171220047}
+  driverExitPosition: {fileID: 5987386820051445144}
 --- !u!1001 &7682745380368521401
 PrefabInstance:
   m_ObjectHideFlags: 0

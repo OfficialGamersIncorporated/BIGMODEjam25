@@ -5,7 +5,7 @@ public class PowerTest : MonoBehaviour
 {
     
     public Vector3 pointerPos;
-    [SerializeField] Camera cam;
+    Camera cam;
     [SerializeField] float raycastDistance = 1000;
     [SerializeField] LayerMask ignoreLayerMask;
 
@@ -34,6 +34,7 @@ public class PowerTest : MonoBehaviour
 
     void Start()
     {
+        cam = Camera.main;
         blastInput = InputSystem.actions.FindAction("BlastPower");
         wallInput = InputSystem.actions.FindAction("WallPower");
     }

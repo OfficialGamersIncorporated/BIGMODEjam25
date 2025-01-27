@@ -20,6 +20,7 @@ public class Vehicle : MonoBehaviour {
     Rigidbody rigidBody;
     new public Collider collider;
     public Transform centerOfGravity;
+    public Transform driverExitPosition;
 
     float lastSteer = 0;
     float lastAccell = 0;
