@@ -18,7 +18,7 @@ public class Vehicle : MonoBehaviour {
 
     WheelControl[] wheels;
     Rigidbody rigidBody;
-    public Collider collider;
+    new public Collider collider;
     public Transform centerOfGravity;
 
     float lastSteer = 0;

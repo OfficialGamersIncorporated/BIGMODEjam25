@@ -183,14 +183,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3440356004d133a4fbaa1ae5eb7aac66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  rb: {fileID: 0}
   playerHeight: 2
+  isDashPressed: 0
+  isJumpPressed: 0
+  movementVector: {x: 0, y: 0}
   acceleration: 100
-  moveSpeed: 7.5
-  jumpForce: 10
-  dashForce: 7.5
-  airStrafe: 1
+  moveSpeed: 10
+  jumpForce: 800
+  dashForce: 200
+  airStrafe: 0.9
   canJump: 1
   jumpTimer: 0
   jumpCooldown: 1
@@ -233,9 +234,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5416502359397178880}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 90
+  m_Drag: 0.5
+  m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

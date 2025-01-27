@@ -13,6 +13,7 @@ public class PlayerFocusControl : MonoBehaviour {
 
     InputAction moveAction;
     InputAction sprintAction;
+    InputAction jumpAction;
 
     void Start() {
         PlayerCar = GetComponentInChildren<Vehicle>();
@@ -20,33 +21,43 @@ public class PlayerFocusControl : MonoBehaviour {
 
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
+        jumpAction = InputSystem.actions.FindAction("Jump");
     }
     void Update() {
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         bool sprintValue = sprintAction.IsPressed();
+        bool jumpValue = jumpAction.IsPressed();
 
         if (playerFocus != lastPlayerFocus){
             lastPlayerFocus = playerFocus;
         }
 
-        if (playerFocus == PlayerFocus.Vehicle) {
-            PlayerCar.SteeringInput = moveValue.x;
-            PlayerCar.ThrottleInput = Mathf.Max(0, moveValue.y);
-            PlayerCar.BrakeInput = Mathf.Max(0, -moveValue.y);
-            PlayerCar.UrgencyInput = sprintValue;
-            PlayerCar.canBrakeAsReverse = true;
-        } else {
-            PlayerCar.SteeringInput = 0;
-            PlayerCar.ThrottleInput = 0;
-            PlayerCar.BrakeInput = 1;
-            PlayerCar.UrgencyInput = false;
-            PlayerCar.canBrakeAsReverse = false;
+        if(PlayerCar) {
+            if(playerFocus == PlayerFocus.Vehicle) {
+                PlayerCar.SteeringInput = moveValue.x;
+                PlayerCar.ThrottleInput = Mathf.Max(0, moveValue.y);
+                PlayerCar.BrakeInput = Mathf.Max(0, -moveValue.y);
+                PlayerCar.UrgencyInput = sprintValue;
+                PlayerCar.canBrakeAsReverse = true;
+            } else {
+                PlayerCar.SteeringInput = 0;
+                PlayerCar.ThrottleInput = 0;
+                PlayerCar.BrakeInput = 1;
+                PlayerCar.UrgencyInput = false;
+                PlayerCar.canBrakeAsReverse = false;
+            }
         }
 
-        if (playerFocus == PlayerFocus.Character) {
-            // do other stuff to it
-        } else {
-            // kill your parents
+        if(PlayerChar) {
+            if(playerFocus == PlayerFocus.Character) {
+                PlayerChar.movementVector = moveValue;
+                PlayerChar.isDashPressed = sprintValue;
+                PlayerChar.isJumpPressed = jumpValue;
+            } else {
+                PlayerChar.movementVector = Vector2.zero;
+                PlayerChar.isDashPressed = false;
+                PlayerChar.isJumpPressed = false;
+            }
         }
     }
 }

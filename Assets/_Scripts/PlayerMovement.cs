@@ -5,18 +5,23 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Refernces")]
-    [SerializeField] Camera cam;
-    [SerializeField] Rigidbody rb;
+    Camera cam;
+    Rigidbody rb;
 
     // MOVEMENT
     [SerializeField] float playerHeight = 2;
 
-    InputAction lateralInput;
-    InputAction dashInput;
-    InputAction jumpInput;
+    //InputAction lateralInput;
+    //InputAction dashInput;
+    //InputAction jumpInput;
 
-    Vector2 movementVector;
+    public bool isDashPressed = false;
+    public bool isJumpPressed = false;
+    public Vector2 movementVector;
     Vector3 relativeMovementVector;
+
+    bool lastDashPressed = false;
+    bool lastJumpPressed = false;
 
     [Header("Movement Stats")]
     [SerializeField] float acceleration;
@@ -48,14 +53,21 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        lateralInput = InputSystem.actions.FindAction("Move");
-        dashInput = InputSystem.actions.FindAction("Sprint");
-        jumpInput = InputSystem.actions.FindAction("Jump");
+        cam = Camera.main;
+        //lateralInput = InputSystem.actions.FindAction("Move");
+        //dashInput = InputSystem.actions.FindAction("Sprint");
+        //jumpInput = InputSystem.actions.FindAction("Jump");
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        bool isJumpThisFrame = isJumpPressed && isJumpPressed != lastJumpPressed;
+        bool isDashThisFrame = isDashPressed && isDashPressed != lastDashPressed;
+        lastJumpPressed = isJumpPressed;
+        lastDashPressed = isDashPressed;
+
+
         if (!canJump && grounded)
         {
             jumpTimer += Time.deltaTime;
@@ -79,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        movementVector = lateralInput.ReadValue<Vector2>();
+        //movementVector = lateralInput.ReadValue<Vector2>();
 
         camForward = cam.transform.forward;
         camRight = cam.transform.right;
@@ -103,13 +115,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
 
-            if (jumpInput.WasPressedThisFrame())
+            if (isJumpThisFrame) // jumpInput.WasPressedThisFrame())
             {
                 canJump = false;
                 rb.AddRelativeForce(new Vector3(relativeMovementVector.x, jumpForce, relativeMovementVector.z), ForceMode.Impulse);
                 //rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpForce, rb.linearVelocity.z);
             }
-            else if (dashInput.WasPressedThisFrame())
+            else if (isJumpThisFrame) //dashInput.WasPressedThisFrame())
             {
                 canDash = false;
                 rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * dashForce, ForceMode.Impulse);
