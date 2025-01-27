@@ -32,7 +32,7 @@ public class Telekensis : MonoBehaviour
         {
             //heldPart.transform.position = Vector3.MoveTowards(heldPart.transform.position, teleTarget.transform.position, flySpeed * Time.deltaTime);
             partRB.linearVelocity = Vector3.MoveTowards(partRB.linearVelocity, (teleTarget.transform.position - heldPart.transform.position).normalized * TeleForce, TeleSpeed * Time.deltaTime);
-            if (partRB.linearVelocity.magnitude > Vector3.Magnitude(heldPart.transform.position - teleTarget.transform.position))
+            if (Vector3.Magnitude(heldPart.transform.position - teleTarget.transform.position) < 1)
             {
                 partRB.linearVelocity = Vector3.ClampMagnitude(partRB.linearVelocity, Vector3.Magnitude(heldPart.transform.position - teleTarget.transform.position));
             }
@@ -62,6 +62,7 @@ public class Telekensis : MonoBehaviour
                 heldPart = hitData.transform.gameObject;
                 partRB = heldPart.GetComponent<Rigidbody>();
                 partRB.useGravity = false;
+                partRB.isKinematic = false;
             }
         }
     }

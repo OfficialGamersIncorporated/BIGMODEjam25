@@ -12,7 +12,7 @@ public class FollowMouse : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] float yOffset = 0.5f;
     bool holding = false;
-    Vector3 holdingPos;
+    Vector3 holdingScreenPos;
 
     void Start()
     {
@@ -25,11 +25,12 @@ public class FollowMouse : MonoBehaviour
         if (cameraAction.WasPressedThisFrame())
         {
             holding = true;
-            holdingPos = transform.position;
+            holdingScreenPos = Input.mousePosition;
         }
         if (cameraAction.WasReleasedThisFrame())
         {
             holding = false;
+            holdingScreenPos = Vector3.zero;
         }
 
         if (!holding)
@@ -43,7 +44,12 @@ public class FollowMouse : MonoBehaviour
         }
         else
         {
-            pointerPos = holdingPos;
+            Ray ray = cam.ScreenPointToRay(holdingScreenPos);
+
+            if (Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, layerMask))
+            {
+                pointerPos = hitData.point;
+            }
         }
 
 

@@ -90,13 +90,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 forwardRelative = movementVector.y * camForward.normalized;
         Vector3 rightRelative = movementVector.x * camRight.normalized;
 
+        relativeMovementVector = (forwardRelative + rightRelative).normalized * moveSpeed;
+        relativeMovementVector.y = 0f;
+
         if (grounded)
         {
-            relativeMovementVector = (forwardRelative + rightRelative).normalized * moveSpeed;
-            relativeMovementVector.y = 0f;
 
 
-            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.z), acceleration * Time.deltaTime);
+            if (movementVector.sqrMagnitude > Mathf.Epsilon)
+            {
+                rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.z), acceleration * Time.deltaTime);
+            }
 
 
             if (jumpInput.WasPressedThisFrame())
@@ -110,20 +114,18 @@ public class PlayerMovement : MonoBehaviour
                 canDash = false;
                 rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * dashForce, ForceMode.Impulse);
             }
-            else
-            {
-                //rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z), ForceMode.Acceleration);
-            }
         }
         else
         {
-            relativeMovementVector = (forwardRelative + rightRelative).normalized * (moveSpeed * airStrafe);
-            relativeMovementVector.y = 0f;
-
-
-            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.z), acceleration * Time.deltaTime);
-            //rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) / 2, ForceMode.Acceleration);
+            if (movementVector.sqrMagnitude > Mathf.Epsilon)
+            {
+                rb.linearVelocity += (new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * airStrafe) * Time.deltaTime;
+                //rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * airStrafe, ForceMode.Force);
+            }
+            
         }
+
+
     }
 
     void FixedUpdate()
