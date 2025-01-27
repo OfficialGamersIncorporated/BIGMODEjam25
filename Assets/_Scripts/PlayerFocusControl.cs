@@ -42,5 +42,11 @@ public class PlayerFocusControl : MonoBehaviour {
             PlayerCar.UrgencyInput = false;
             PlayerCar.canBrakeAsReverse = false;
         }
+
+        if (playerFocus == PlayerFocus.Character) {
+            // do other stuff to it
+        } else {
+            // kill your parents
+        }
     }
 }

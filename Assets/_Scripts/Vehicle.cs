@@ -18,6 +18,8 @@ public class Vehicle : MonoBehaviour {
 
     WheelControl[] wheels;
     Rigidbody rigidBody;
+    public Collider collider;
+    public Transform centerOfGravity;
 
     float lastSteer = 0;
     float lastAccell = 0;
@@ -30,10 +32,14 @@ public class Vehicle : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody>();
 
         // Adjust center of mass vertically, to help prevent the car from rolling
-        rigidBody.centerOfMass += Vector3.up * centreOfGravityOffset;
+        //rigidBody.centerOfMass += Vector3.up * centreOfGravityOffset;
+        rigidBody.centerOfMass = centerOfGravity.localPosition;
 
         // Find all child GameObjects that have the WheelControl script attached
         wheels = GetComponentsInChildren<WheelControl>();
+        foreach(WheelCollider wheel in GetComponentsInChildren<WheelCollider>()) {
+            Physics.IgnoreCollision(collider, wheel);
+        }
     }
 
     // Update is called once per frame
@@ -49,7 +55,7 @@ public class Vehicle : MonoBehaviour {
         // Calculate current speed in relation to the forward direction of the car
         // (this returns a negative number when traveling backwards)
         float forwardSpeed = Vector3.Dot(transform.forward, rigidBody.linearVelocity);
-        print(forwardSpeed);
+        //print(forwardSpeed);
 
 
         // Calculate how close the car is to top speed
