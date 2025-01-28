@@ -18,19 +18,19 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 126561420fc564549b7bb0880a1074ff, type: 2}
     - target: {fileID: 1239844873172814233, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: motorized
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1680914724336467981, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: motorized
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: maxSpeed
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: motorTorque
-      value: 3000
+      value: 3500
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: UrgencyInput
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: maxSteerRateOfChange
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: centreOfGravityOffset
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: steeringRangeAtMaxSpeed
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5274380726229561247, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -145,6 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b281f4393ddb5438495ce7fbbe64d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forwardAcceleration: 100
+  turningAcceleration: 100
+  reverseAcceleration: 100
   distanceToTarget: 0
   localTargetVector: {x: 0, y: 0, z: 0}
   range: 500

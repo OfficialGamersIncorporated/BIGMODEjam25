@@ -71,6 +71,8 @@ public class EnemyVehicleControl : MonoBehaviour
 
             moveValue.y = dotProduct;
 
+            vehicleControl.ThrottleInput = 1;
+
             if (left)
             {
                 moveValue.x = Mathf.Clamp((-1 - dotProduct), -1, 1);
@@ -87,7 +89,7 @@ public class EnemyVehicleControl : MonoBehaviour
             }
             if (back)
             {
-                vehicleControl.ThrottleInput = 0;
+                vehicleControl.ThrottleInput = 1;
                 vehicleControl.BrakeInput = 1;
                 //moveValue.y = -1;
             }
