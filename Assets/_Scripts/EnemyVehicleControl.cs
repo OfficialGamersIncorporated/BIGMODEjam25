@@ -7,12 +7,14 @@ public class EnemyVehicleControl : MonoBehaviour
     Vehicle vehicleControl;
 
     Vector2 moveValue = Vector2.zero;
-    bool sprintValue = false;
+    bool sprintValue;
 
     bool hasTarget;
 
     PlayerFocusControl playerFocusControl;
     GameObject targetGo;
+    Rigidbody targetRB;
+    Vector3 predictTarget;
 
 
     [Header("Targeting")]
@@ -36,6 +38,7 @@ public class EnemyVehicleControl : MonoBehaviour
         if (playerFocusControl != null)
         {
             targetGo = playerFocusControl.GetCurrentPlayer();
+            targetRB = targetGo.GetComponent<Rigidbody>();
             hasTarget = true;
         }
 
@@ -45,12 +48,16 @@ public class EnemyVehicleControl : MonoBehaviour
     {
         if (hasTarget)
         {
-            distanceToTarget = Vector3.Distance(transform.position, targetGo.transform.position);
-            localTargetVector = transform.InverseTransformPoint(targetGo.transform.position).normalized;
+            predictTarget = (targetRB.linearVelocity / 2) + targetGo.transform.position;
+
+            vehicleControl.UrgencyInput = true;
+
+            distanceToTarget = Vector3.Distance(transform.position, predictTarget);
+            localTargetVector = transform.InverseTransformPoint(predictTarget).normalized;
 
             inRange = (distanceToTarget < range);
 
-            targetDirection = (targetGo.transform.position - transform.position).normalized;
+            targetDirection = (predictTarget - transform.position).normalized;
 
             dotProduct = Vector3.Dot(transform.forward, targetDirection);
             front = dotProduct > 0.707;
@@ -66,32 +73,33 @@ public class EnemyVehicleControl : MonoBehaviour
 
             if (left)
             {
-                moveValue.x = dotProduct;
+                moveValue.x = Mathf.Clamp((-1 - dotProduct), -1, 1);
             }
             if (right)
             {
-                moveValue.x = -1 * dotProduct;
+                moveValue.x = Mathf.Clamp((1 - dotProduct), -1, 1);
             }
             if (front)
             {
-                sprintValue = true;
+                vehicleControl.ThrottleInput = 1;
+                vehicleControl.BrakeInput = 0;
+                //moveValue.y = 1;
             }
             if (back)
             {
-                sprintValue = true;
+                vehicleControl.ThrottleInput = 0;
+                vehicleControl.BrakeInput = 1;
+                //moveValue.y = -1;
             }
 
 
-            vehicleControl.SteeringInput = -1 * moveValue.x;
-            vehicleControl.ThrottleInput = Mathf.Max(0, moveValue.y);
-            vehicleControl.BrakeInput = Mathf.Max(0, -moveValue.y);
+            vehicleControl.SteeringInput = moveValue.x;
             vehicleControl.UrgencyInput = sprintValue;
             vehicleControl.canBrakeAsReverse = true;
         }
         else
         {
             moveValue = Vector2.zero;
-            sprintValue = false;
 
             vehicleControl.SteeringInput = 0;
             vehicleControl.ThrottleInput = 0;
@@ -117,8 +125,14 @@ public class EnemyVehicleControl : MonoBehaviour
     {
         if (hasTarget)
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.white;
             Gizmos.DrawLine(transform.position, targetGo.transform.position);
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, predictTarget);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(predictTarget, 2);
         }
     }
 }
