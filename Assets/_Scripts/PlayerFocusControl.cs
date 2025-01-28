@@ -1,14 +1,26 @@
+using System.Resources;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerFocusControl : MonoBehaviour {
 
-    public enum PlayerFocus { Character, Vehicle };
+    private static PlayerFocusControl _instance;
+    public static PlayerFocusControl Instance
+    {
+        get
+        {
+            if (_instance == null)
+                Debug.LogError("PlayerFocusControl is null");
+            return _instance;
+        }
+    }
+
+    public enum PlayerFocus { OnFoot, Vehicle };
 
     public PlayerFocus playerFocus = PlayerFocus.Vehicle;
 
-    Vehicle PlayerCar;
-    PlayerMovement PlayerChar;
+    Vehicle PlayerVehicle;
+    PlayerMovement PlayerOnFoot;
     CameraOrbit CameraControl;
     PlayerFocus lastPlayerFocus = PlayerFocus.Vehicle;
 
@@ -17,9 +29,14 @@ public class PlayerFocusControl : MonoBehaviour {
     InputAction jumpAction;
     InputAction interactAction;
 
+    void Awake()
+    {
+        _instance = this;
+    }
+
     void Start() {
-        PlayerCar = GetComponentInChildren<Vehicle>();
-        PlayerChar = GetComponentInChildren<PlayerMovement>();
+        PlayerVehicle = GetComponentInChildren<Vehicle>();
+        PlayerOnFoot = GetComponentInChildren<PlayerMovement>();
         CameraControl = GetComponentInChildren<CameraOrbit>();
 
         moveAction = InputSystem.actions.FindAction("Move");
@@ -28,15 +45,15 @@ public class PlayerFocusControl : MonoBehaviour {
         interactAction = InputSystem.actions.FindAction("Interact");
 
         if(playerFocus == PlayerFocus.Vehicle) {
-            PlayerChar.gameObject.SetActive(false);
+            PlayerOnFoot.gameObject.SetActive(false);
             RefreshCameraTarget();
         }
     }
     void RefreshCameraTarget() {
-        if(playerFocus == PlayerFocus.Character)
-            CameraControl.orbitPoint = PlayerChar.transform;
+        if(playerFocus == PlayerFocus.OnFoot)
+            CameraControl.orbitPoint = PlayerOnFoot.transform;
         else
-            CameraControl.orbitPoint = PlayerCar.transform;
+            CameraControl.orbitPoint = PlayerVehicle.transform;
     }
     void Update() {
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
@@ -44,10 +61,10 @@ public class PlayerFocusControl : MonoBehaviour {
         bool jumpValue = jumpAction.IsPressed();
 
         if(interactAction.WasPressedThisFrame()) {
-            if(playerFocus == PlayerFocus.Character)
+            if(playerFocus == PlayerFocus.OnFoot)
                 playerFocus = PlayerFocus.Vehicle;
             else
-                playerFocus = PlayerFocus.Character;
+                playerFocus = PlayerFocus.OnFoot;
         }
 
         if (playerFocus != lastPlayerFocus){
@@ -56,42 +73,60 @@ public class PlayerFocusControl : MonoBehaviour {
             lastPlayerFocus = playerFocus;
         }
 
-        if(PlayerCar) {
+        if(PlayerVehicle) {
             if(playerFocus == PlayerFocus.Vehicle) {
-                PlayerCar.SteeringInput = moveValue.x;
-                PlayerCar.ThrottleInput = Mathf.Max(0, moveValue.y);
-                PlayerCar.BrakeInput = Mathf.Max(0, -moveValue.y);
-                PlayerCar.UrgencyInput = sprintValue;
-                PlayerCar.canBrakeAsReverse = true;
+                PlayerVehicle.SteeringInput = moveValue.x;
+                PlayerVehicle.ThrottleInput = Mathf.Max(0, moveValue.y);
+                PlayerVehicle.BrakeInput = Mathf.Max(0, -moveValue.y);
+                PlayerVehicle.UrgencyInput = sprintValue;
+                PlayerVehicle.canBrakeAsReverse = true;
             } else {
-                PlayerCar.SteeringInput = 0;
-                PlayerCar.ThrottleInput = 0;
-                PlayerCar.BrakeInput = 1;
-                PlayerCar.UrgencyInput = false;
-                PlayerCar.canBrakeAsReverse = false;
+                PlayerVehicle.SteeringInput = 0;
+                PlayerVehicle.ThrottleInput = 0;
+                PlayerVehicle.BrakeInput = 1;
+                PlayerVehicle.UrgencyInput = false;
+                PlayerVehicle.canBrakeAsReverse = false;
             }
         }
 
-        if(PlayerChar) {
-            if(playerFocus == PlayerFocus.Character) {
-                PlayerChar.movementVector = moveValue;
-                PlayerChar.isDashPressed = sprintValue;
-                PlayerChar.isJumpPressed = jumpValue;
-                if(!PlayerChar.gameObject.activeSelf) {
-                    PlayerChar.transform.position = PlayerCar.driverExitPosition.position;
+        if(PlayerOnFoot) {
+            if(playerFocus == PlayerFocus.OnFoot) {
+                PlayerOnFoot.movementVector = moveValue;
+                PlayerOnFoot.isDashPressed = sprintValue;
+                PlayerOnFoot.isJumpPressed = jumpValue;
+                if(!PlayerOnFoot.gameObject.activeSelf) {
+                    PlayerOnFoot.transform.position = PlayerVehicle.driverExitPosition.position;
 
-                    Rigidbody charBody = PlayerChar.GetComponent<Rigidbody>();
-                    Rigidbody carBody = PlayerCar.GetComponent<Rigidbody>();
-                    charBody.linearVelocity = carBody.linearVelocity;
+                    Rigidbody vehicleBody = PlayerOnFoot.GetComponent<Rigidbody>();
+                    Rigidbody onFootBody = PlayerVehicle.GetComponent<Rigidbody>();
+                    vehicleBody.linearVelocity = onFootBody.linearVelocity;
 
-                    PlayerChar.gameObject.SetActive(true);
+                    PlayerOnFoot.gameObject.SetActive(true);
                 }
             } else {
-                PlayerChar.movementVector = Vector2.zero;
-                PlayerChar.isDashPressed = false;
-                PlayerChar.isJumpPressed = false;
-                if(PlayerChar.gameObject.activeSelf) PlayerChar.gameObject.SetActive(false);
+                PlayerOnFoot.movementVector = Vector2.zero;
+                PlayerOnFoot.isDashPressed = false;
+                PlayerOnFoot.isJumpPressed = false;
+                if(PlayerOnFoot.gameObject.activeSelf) PlayerOnFoot.gameObject.SetActive(false);
             }
         }
     }
+
+    public GameObject GetCurrentPlayer()
+    {
+        if (playerFocus == PlayerFocus.OnFoot)
+        {
+            return PlayerOnFoot.gameObject;
+        }
+        else if (playerFocus == PlayerFocus.Vehicle)
+        {
+            return PlayerVehicle.gameObject;
+        }
+        else
+        {
+            print("something bad happened");
+            return null;
+        }
+    }
+
 }
