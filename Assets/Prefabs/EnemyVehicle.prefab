@@ -16,6 +16,46 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 126561420fc564549b7bb0880a1074ff, type: 2}
+    - target: {fileID: 1239844873172814233, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: motorized
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680914724336467981, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: motorized
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: maxSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: motorTorque
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: UrgencyInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: steeringRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: maxSteerRateOfChange
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: centreOfGravityOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: repeatBrakeForReverse
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: steeringRangeAtMaxSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5274380726229561247, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -38,11 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 126561420fc564549b7bb0880a1074ff, type: 2}
     - target: {fileID: 7875250480878344815, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7875250480878344815, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7875250480878344815, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83,5 +123,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 956166399987369859}
   m_SourcePrefab: {fileID: 100100000, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+--- !u!1 &2289973247480574452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+  m_PrefabInstance: {fileID: 7900444401149629547}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &956166399987369859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289973247480574452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b281f4393ddb5438495ce7fbbe64d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToTarget: 0
+  localTargetVector: {x: 0, y: 0, z: 0}
+  range: 500
+  inRange: 0
+  targetDirection: {x: 0, y: 0, z: 0}
+  dotProduct: 0
+  front: 0
+  side: 0
+  back: 0
+  left: 0
+  right: 0

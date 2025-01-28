@@ -32,23 +32,29 @@ public class PlayerFocusControl : MonoBehaviour {
     void Awake()
     {
         _instance = this;
-    }
 
-    void Start() {
         PlayerVehicle = GetComponentInChildren<Vehicle>();
         PlayerOnFoot = GetComponentInChildren<PlayerMovement>();
         CameraControl = GetComponentInChildren<CameraOrbit>();
+
+        if (playerFocus == PlayerFocus.Vehicle)
+        {
+            PlayerOnFoot.gameObject.SetActive(false);
+            RefreshCameraTarget();
+        }
+    }
+
+    void Start() {
+
 
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
         interactAction = InputSystem.actions.FindAction("Interact");
 
-        if(playerFocus == PlayerFocus.Vehicle) {
-            PlayerOnFoot.gameObject.SetActive(false);
-            RefreshCameraTarget();
-        }
+
     }
+
     void RefreshCameraTarget() {
         if(playerFocus == PlayerFocus.OnFoot)
             CameraControl.orbitPoint = PlayerOnFoot.transform;
