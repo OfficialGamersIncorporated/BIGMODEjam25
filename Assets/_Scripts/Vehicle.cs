@@ -10,6 +10,7 @@ public class Vehicle : MonoBehaviour {
     public float steeringRangeAtMaxSpeed = 10;
     public float centreOfGravityOffset = -1f;
     public bool canBrakeAsReverse = true;
+    public bool repeatBrakeForReverse = true;
 
     public float SteeringInput = 0;
     public float ThrottleInput = 0;
@@ -73,8 +74,12 @@ public class Vehicle : MonoBehaviour {
 
         // Check whether the user input is in the same direction 
         // as the car's velocity
-        if (canBrakeAsReverse && forwardSpeed <= 1 && !lastIsBraking && BrakeInput > 0.1f) {
-            brakeAsReverse = true;
+        if(!repeatBrakeForReverse) {
+            brakeAsReverse = canBrakeAsReverse;
+        } else {
+            if(canBrakeAsReverse && forwardSpeed <= 1 && !lastIsBraking && BrakeInput > 0.1f) {
+                brakeAsReverse = true;
+            }
         }
         if(BrakeInput < 0.1f) brakeAsReverse = false;
 
