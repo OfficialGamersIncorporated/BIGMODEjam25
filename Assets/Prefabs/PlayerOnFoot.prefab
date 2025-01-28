@@ -141,8 +141,9 @@ MonoBehaviour:
     m_Bits: 256
   heldPart: {fileID: 0}
   teleTarget: {fileID: 0}
-  <TeleForce>k__BackingField: 100
-  <TeleSpeed>k__BackingField: 100
+  <TeleForce>k__BackingField: 500
+  <TeleSpeed>k__BackingField: 50
+  TeleDrag: 0.1
 --- !u!114 &7516227099623135471
 MonoBehaviour:
   m_ObjectHideFlags: 0
