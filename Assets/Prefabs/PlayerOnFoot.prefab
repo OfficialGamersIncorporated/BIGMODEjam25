@@ -186,11 +186,13 @@ MonoBehaviour:
   isDashPressed: 0
   isJumpPressed: 0
   movementVector: {x: 0, y: 0}
-  acceleration: 100
+  acceleration: 30
   moveSpeed: 10
   jumpForce: 800
   dashForce: 200
-  airStrafe: 0.9
+  airStrafe: 10
+  velocitySlerp: 7.5
+  fallingGravityModifier: 3
   canJump: 1
   jumpTimer: 0
   jumpCooldown: 1
@@ -209,7 +211,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5416502359397178880}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 49ee9bb293c492e45b7df0bb3e142fde, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -247,9 +249,9 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!1 &8646690077594234230
