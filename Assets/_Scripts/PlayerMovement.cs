@@ -108,12 +108,7 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
         {
 
-
-            if (movementVector.sqrMagnitude > Mathf.Epsilon)
-            {
-                rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.z), acceleration * Time.deltaTime);
-            }
-
+            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, new Vector3(relativeMovementVector.x, rb.linearVelocity.y, relativeMovementVector.z), acceleration * Time.deltaTime);
 
             if (isJumpThisFrame) // jumpInput.WasPressedThisFrame())
             {
@@ -121,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddRelativeForce(new Vector3(relativeMovementVector.x, jumpForce, relativeMovementVector.z), ForceMode.Impulse);
                 //rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpForce, rb.linearVelocity.z);
             }
-            else if (isJumpThisFrame) //dashInput.WasPressedThisFrame())
+            else if (isDashThisFrame) //dashInput.WasPressedThisFrame())
             {
                 canDash = false;
                 rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * dashForce, ForceMode.Impulse);
