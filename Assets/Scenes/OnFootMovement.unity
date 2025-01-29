@@ -13812,10 +13812,6 @@ PrefabInstance:
       propertyPath: orbitPoint
       value: 
       objectReference: {fileID: 1242974734}
-    - target: {fileID: 5573993716260718759, guid: 5b3ff9bcf5cb2f54dbdd7dbc5653a4f4, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6476163813916033173, guid: 5b3ff9bcf5cb2f54dbdd7dbc5653a4f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

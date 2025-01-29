@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TelekineticHand
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Arm
+    m_Weight: 0
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/Root
+    m_Weight: 0
+  - m_Path: Armature/Root/Arm.1
+    m_Weight: 0
+  - m_Path: Armature/Root/Arm.1/Arm.2
+    m_Weight: 0
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3
+    m_Weight: 0
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3/Finger_Middle.3_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3/Finger_Pinky.3_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3/Finger_Pointer.3_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3/Finger_Ring.3_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3
+    m_Weight: 1
+  - m_Path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3/Thumb.3_end
+    m_Weight: 1

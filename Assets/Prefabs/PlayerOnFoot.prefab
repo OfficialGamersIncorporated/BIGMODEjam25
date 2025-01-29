@@ -227,6 +227,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8511729679021084101}
   - {fileID: 2124738005460889122}
   - {fileID: 5827898924545717074}
   - {fileID: 3237512314459013222}
@@ -449,3 +450,127 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &8184452805764770350
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2199637832810541896}
+    m_Modifications:
+    - target: {fileID: -8746058855735016753, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      propertyPath: m_Name
+      value: TelekineticHand
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5295111557229857527}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 735409503805904882}
+  m_SourcePrefab: {fileID: 100100000, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+--- !u!4 &4592176855708663780 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5633920617566049738, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+  m_PrefabInstance: {fileID: 8184452805764770350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8511729679021084101 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+  m_PrefabInstance: {fileID: 8184452805764770350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9030963718363797375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+  m_PrefabInstance: {fileID: 8184452805764770350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5295111557229857527
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030963718363797375}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 6445e566907fd464680bae150d5e7e98, type: 3}
+  m_Controller: {fileID: 9100000, guid: 8168a5d999e8ce0418994164fcc4281d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &735409503805904882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030963718363797375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345a44993581ca247b46bd553b928583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  telekensis: {fileID: 7060780082368852001}
+  followMouse: {fileID: 8247561818370583572}
+  baseAttachPoint: {fileID: 2199637832810541896}
+  cursorPoint: {fileID: 2124738005460889122}
+  endNode: {fileID: 4592176855708663780}
+  nodeCount: 2
+  armDragLerpSpeed: 25
+  handGripPointOffset: {x: 0, y: -1.25, z: 0.25}

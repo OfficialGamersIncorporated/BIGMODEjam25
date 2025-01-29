@@ -7,7 +7,7 @@ public class Telekensis : MonoBehaviour {
     float raycastDistance = 1000f;
 
     [SerializeField] LayerMask objectLayer;
-    [SerializeField] GameObject heldPart;
+    public GameObject heldPart;
     [SerializeField] GameObject teleTarget;
     [field: SerializeField] public float TeleForce { get; private set; } = 5f;
     [field: SerializeField] public float TeleSpeed { get; private set; } = 5f;

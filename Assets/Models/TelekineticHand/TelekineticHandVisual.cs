@@ -3,20 +3,32 @@ using UnityEngine;
 
 public class TelekineticHandVisual : MonoBehaviour {
 
+    public Telekensis telekensis;
+    public FollowMouse followMouse;
     public Transform baseAttachPoint;
-    public Transform targetPoint;
+    public Transform cursorPoint;
     public Transform endNode;
+
     public int nodeCount = 2;
     public float armDragLerpSpeed = 2;
+    public Vector3 handGripPointOffset;
+
+    Animator animator;
 
     //Vector3 delayedMidPostion;
     List<Vector3> delayedMidPositions;
 
+    Vector3 lastTargetPos;
+    GameObject lastHeldPart = null;
+    Quaternion targetRotation = new Quaternion();
+
     void OnEnable() {
+        animator = GetComponent<Animator>();
+        lastTargetPos = cursorPoint.position;
         delayedMidPositions = new List<Vector3>(nodeCount + 1);
         //delayedMidPostion = targetPoint.position;
         for(int i = 0; i < nodeCount; i++) {
-            delayedMidPositions.Insert(i, Vector3.Lerp(baseAttachPoint.position, targetPoint.position, (i / nodeCount)));
+            delayedMidPositions.Insert(i, Vector3.Lerp(baseAttachPoint.position, cursorPoint.position, (i / nodeCount)));
         }
     }
     Transform GetNodeFromIndex(int index) {
@@ -29,12 +41,25 @@ public class TelekineticHandVisual : MonoBehaviour {
         return node;
     }
     void Update() {
+        Transform targetPoint = cursorPoint;
+        if(telekensis.heldPart) targetPoint = telekensis.heldPart.transform;
+        Vector3 targetPosition = targetPoint.position + endNode.rotation * handGripPointOffset;
+
+        if (telekensis.heldPart != lastHeldPart) {
+            lastHeldPart = telekensis.heldPart;
+            if(telekensis.heldPart)
+                animator.SetTrigger("Closed");
+            else
+                animator.SetTrigger("Opened");
+        }
+
         float blend = 1 - Mathf.Pow(0.5f, Time.deltaTime * armDragLerpSpeed);
-        Vector3 targetMidPosition = Vector3.Lerp(baseAttachPoint.position, targetPoint.position, 2f/3f);
+
+        transform.LookAt(GetNodeFromIndex(nodeCount));
 
         for(int i = 0; i < nodeCount; i++) {
             //print(i);
-            Vector3 previousPos = targetPoint.position;
+            Vector3 previousPos = targetPosition;
             if(i > 0) previousPos = delayedMidPositions[i - 1];
 
             Vector3 nextPos = baseAttachPoint.position;
@@ -49,9 +74,16 @@ public class TelekineticHandVisual : MonoBehaviour {
             node.rotation = Quaternion.LookRotation((nextPos - previousPos).normalized) * Quaternion.Euler(90, 180, 0);
         }
 
-        endNode.position = targetPoint.position;
-        endNode.rotation = Quaternion.LookRotation((targetPoint.position - GetNodeFromIndex(1).position).normalized, Vector3.up) * Quaternion.Euler(90,0,0);
+        endNode.position = targetPosition ;
+        endNode.rotation = Quaternion.LookRotation((targetPosition - GetNodeFromIndex(1).position).normalized, Vector3.up) * Quaternion.Euler(90,0,0);
 
-        transform.LookAt(GetNodeFromIndex(nodeCount));
+        /*Vector3 targetLookVect = (targetPosition - lastTargetPos); //(followMouse.pointerPos - targetPosition).normalized;
+        lastTargetPos = targetPosition;
+        if (targetLookVect.magnitude > 0.01f)
+            targetRotation = Quaternion.LookRotation(targetLookVect.normalized, Vector3.up) * Quaternion.Euler(90, 0, 0);
+        endNode.rotation = Quaternion.Slerp(endNode.rotation, targetRotation, blend);*/
+
+        //endNode.position += endNode.rotation * handGripPointOffset;
+
     }
 }

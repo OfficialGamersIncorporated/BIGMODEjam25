@@ -60,8 +60,64 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 0
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Arm.1
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3/Finger_Middle.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3/Finger_Pinky.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3/Finger_Pointer.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3/Finger_Ring.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3/Thumb.3_end
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
@@ -89,9 +145,65 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 0
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Arm.1
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3/Finger_Middle.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3/Finger_Pinky.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3/Finger_Pointer.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3/Finger_Ring.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3/Thumb.3_end
+        weight: 1
+      maskType: 0
+      maskSource: {fileID: 31900000, guid: b989e40c70fd234478c76d7487b2638c, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Armature|Close_Start
@@ -118,8 +230,64 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 0
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Arm.1
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3/Finger_Middle.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3/Finger_Pinky.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3/Finger_Pointer.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3/Finger_Ring.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3/Thumb.3_end
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
@@ -147,8 +315,64 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 0
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Arm.1
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3/Finger_Middle.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3/Finger_Pinky.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3/Finger_Pointer.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3/Finger_Ring.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3/Thumb.3_end
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
@@ -176,8 +400,64 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm
+        weight: 0
+      - path: Armature
+        weight: 0
+      - path: Armature/Root
+        weight: 0
+      - path: Armature/Root/Arm.1
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3
+        weight: 0
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Middle.1/Finger_Middle.2/Finger_Middle.3/Finger_Middle.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pinky.1/Finger_Pinky.2/Finger_Pinky.3/Finger_Pinky.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Pointer.1/Finger_Pointer.2/Finger_Pointer.3/Finger_Pointer.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Finger_Ring.1/Finger_Ring.2/Finger_Ring.3/Finger_Ring.3_end
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3
+        weight: 1
+      - path: Armature/Root/Arm.1/Arm.2/Arm.3/Hand/Thumb.1/Thumb.2/Thumb.3/Thumb.3_end
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     isReadable: 0
@@ -247,7 +527,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
