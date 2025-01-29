@@ -3,9 +3,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
-    //[Header("Refernces")]
+    
+    // REFERENCES
     Camera cam;
     Rigidbody rb;
+    [SerializeField] GameObject mesh;
+
+    [SerializeField] float lookRotationSpeed;
 
     // MOVEMENT
     [SerializeField] float playerHeight = 2;
@@ -25,25 +29,23 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float jumpForce;
     [SerializeField] float dashForce;
     [SerializeField] float airStrafe;
+
+    bool canDash;
+    float dashTimer;
+    [SerializeField] float dashCooldown;
+
     [Tooltip("Slerp rotate the player's velocity towards their desired movement direction to turn faster than acceleration allows.")]
     [SerializeField] float velocitySlerp = 5;
     [Tooltip("Gravity will be multiplied by this value for this character after reaching the apex of their jump or releasing the jump key.")]
     [SerializeField] float fallingGravityModifier = 2;
 
-    [Header("Jump")]
-    [SerializeField] bool canJump;
-    [SerializeField] float jumpTimer;
-    [SerializeField] float jumpCooldown;
-
-    [Header("Dash")]
-    [SerializeField] bool canDash;
-    [SerializeField] float dashTimer;
-    [SerializeField] float dashCooldown;
-
     [Header("Ground Detection")]
-    [SerializeField] bool grounded;
+    bool grounded;
     [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] float groundCheckCooldown = 0.1f;
+    float groundCheckTimer;
+    bool canGroundCheck = true;
 
 
 
@@ -57,34 +59,52 @@ public class PlayerMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update() {
-        // Uh, bryce? This is all physics code. It should probably be in fixed update.
-
-        bool isJumpThisFrame = isJumpPressed && isJumpPressed != lastJumpPressed;
-        bool isDashThisFrame = isDashPressed && isDashPressed != lastDashPressed;
-        lastJumpPressed = isJumpPressed;
-        lastDashPressed = isDashPressed;
-
-
-        if(!canJump && grounded) {
-            jumpTimer += Time.deltaTime;
-            if(jumpTimer >= jumpCooldown) {
-                jumpTimer = 0;
-                canJump = true;
-            }
+    void Update()
+    {
+        if (rb.linearVelocity != Vector3.zero)
+        {
+            Quaternion rotationTarget = Quaternion.LookRotation(rb.linearVelocity, transform.up);
+            Quaternion rotationYOnly = Quaternion.Euler(transform.rotation.eulerAngles.x, rotationTarget.eulerAngles.y, transform.rotation.eulerAngles.z);
+            mesh.transform.rotation = Quaternion.Slerp(mesh.transform.rotation, rotationYOnly, Time.deltaTime * lookRotationSpeed);
         }
+        
+        
 
-        if(!canDash && grounded) {
+
+        if (!canDash) {
             dashTimer += Time.deltaTime;
-            if(dashTimer >= jumpCooldown) {
+
+            if (dashTimer >= dashCooldown) {
                 dashTimer = 0;
                 canDash = true;
             }
         }
 
+        if (!canGroundCheck)
+        {
+            groundCheckTimer += Time.deltaTime;
+
+            if (groundCheckTimer >= groundCheckCooldown)
+            {
+                groundCheckTimer = 0;
+                canGroundCheck = true;
+            }
+        }
+    }
 
 
-        //movementVector = lateralInput.ReadValue<Vector2>();
+    void FixedUpdate() {
+
+        if (canGroundCheck)
+        {
+            GroundCheck();
+        }
+        
+
+        bool isJumpThisFrame = isJumpPressed && isJumpPressed != lastJumpPressed;
+        bool isDashThisFrame = isDashPressed && isDashPressed != lastDashPressed;
+        lastJumpPressed = isJumpPressed;
+        lastDashPressed = isDashPressed;
 
         camForward = cam.transform.forward;
         camRight = cam.transform.right;
@@ -109,10 +129,11 @@ public class PlayerMovement : MonoBehaviour {
 
                     /* rotate the player's velocity towards their desired movement direction faster
                     than acceleration would normally allow so they don't feel like they're on ice. */
-                    float blend = 1 - Mathf.Pow(0.5f, Time.deltaTime * velocitySlerp);
+                    float blend = 1 - Mathf.Pow(0.5f, Time.fixedDeltaTime * velocitySlerp);
                     rb.linearVelocity = Vector3.RotateTowards(rb.linearVelocity, relativeMovementVector.normalized * rb.linearVelocity.magnitude + Vector3.up * rb.linearVelocity.y, blend, 0);
 
-                } else { //decelerating
+                }
+                else { //decelerating 
 
                     // abruptly stop when trying to run the opposite way.
                     rb.linearVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, relativeMovementVector.normalized);
@@ -121,52 +142,52 @@ public class PlayerMovement : MonoBehaviour {
             }
 
             if(isJumpThisFrame) { // jumpInput.WasPressedThisFrame())
-                canJump = false;
                 rb.AddRelativeForce(new Vector3(relativeMovementVector.x, jumpForce, relativeMovementVector.z), ForceMode.Impulse);
-                //rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpForce, rb.linearVelocity.z);
-            } else if(isDashThisFrame) { //dashInput.WasPressedThisFrame())
+            }
+            else if(isDashThisFrame && canDash) { //dashInput.WasPressedThisFrame())
                 canDash = false;
                 rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * dashForce, ForceMode.Impulse);
             }
-            rb.linearVelocity += Time.deltaTime * gravity;
+            
+            rb.linearVelocity += Time.fixedDeltaTime * gravity;
 
-        } else { // airborne
+        }
+        else { // airborne
 
-            /*if(movementVector.sqrMagnitude > Mathf.Epsilon) {
-                rb.linearVelocity += (new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * airStrafe) * Time.deltaTime;
-                //rb.AddRelativeForce(new Vector3(relativeMovementVector.x, 0, relativeMovementVector.z) * airStrafe, ForceMode.Force);
-            }*/
             rateOfVelocityChange = airStrafe;
 
             /* Increase gravity after the climax of our jump or releasing the jump key to make the
             character feel less floaty and allow the player to vary their jump height. */
-            if (rb.linearVelocity.y > 0 && isJumpPressed)
-                rb.linearVelocity += Time.deltaTime * gravity;
-            else
+            if (rb.linearVelocity.y > 0 && isJumpPressed) {
+                rb.linearVelocity += Time.fixedDeltaTime * gravity;
+            }
+            else {
                 /* Apparently, putting floats to the left of vectors when multiplying is better for
                 performance. I'm sure the compiler just does that for us though. */
-                rb.linearVelocity += fallingGravityModifier * Time.deltaTime * gravity;
+                rb.linearVelocity += fallingGravityModifier * Time.fixedDeltaTime * gravity;
+            }
+                
         }
 
         // acceleration
-        rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, relativeMovementVector + Vector3.up * rb.linearVelocity.y, rateOfVelocityChange * Time.deltaTime);
-    }
-
-    void FixedUpdate() {
-
-        GroundCheck();
-
+        rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, relativeMovementVector + Vector3.up * rb.linearVelocity.y, rateOfVelocityChange * Time.fixedDeltaTime);
     }
 
     void GroundCheck() {
         grounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - (playerHeight / 2), transform.position.z), groundCheckRadius, groundLayer);
-        //grounded = Physics.Raycast(transform.position, Vector3.down, (playerHeight / 2) + 0.1f);
+        
     }
 
     private void OnDrawGizmos() {
-        Vector3 playerPos = transform.position;
-        playerPos.y = 0f;
-        Gizmos.DrawLine(playerPos, playerPos + relativeMovementVector);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position, transform.position + relativeMovementVector);
+
+        if (rb != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, transform.position + rb.linearVelocity);
+        }
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position + new Vector3(0, -1 * (playerHeight / 2), 0), groundCheckRadius);

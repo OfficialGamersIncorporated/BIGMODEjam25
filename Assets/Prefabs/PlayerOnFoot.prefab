@@ -26,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602038387536608986}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0.35}
   m_LocalScale: {x: 0.75, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2199637832810541896}
+  m_Father: {fileID: 5827898924545717074}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6753703582855868067
 MeshFilter:
@@ -230,7 +230,6 @@ Transform:
   - {fileID: 8511729679021084101}
   - {fileID: 2124738005460889122}
   - {fileID: 5827898924545717074}
-  - {fileID: 3237512314459013222}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7060780082368852001
@@ -292,6 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3440356004d133a4fbaa1ae5eb7aac66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mesh: {fileID: 8646690077594234230}
+  lookRotationSpeed: 15
   playerHeight: 2
   isDashPressed: 0
   isJumpPressed: 0
@@ -301,19 +302,14 @@ MonoBehaviour:
   jumpForce: 800
   dashForce: 200
   airStrafe: 10
+  dashCooldown: 1
   velocitySlerp: 7.5
   fallingGravityModifier: 3
-  canJump: 1
-  jumpTimer: 0
-  jumpCooldown: 1
-  canDash: 1
-  dashTimer: 0
-  dashCooldown: 1
-  grounded: 1
   groundCheckRadius: 0.3
   groundLayer:
     serializedVersion: 2
     m_Bits: 321
+  groundCheckCooldown: 0.1
 --- !u!136 &6130288206776086159
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -394,7 +390,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3237512314459013222}
   m_Father: {fileID: 2199637832810541896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5632406891036106007
