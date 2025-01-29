@@ -51,9 +51,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brightness: 30
-    - _Distortion: 0.1
-    - _NoiseScale: 40
+    - _Brightness: 4
+    - _Distortion: 10
+    - _NoiseScale: 6
+    - _PixelSize: 4
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors: []
