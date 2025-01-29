@@ -1,39 +1,9 @@
 fileFormatVersion: 2
-guid: a510f637eaa43644aaab696b78fb2bb8
+guid: d1a2c9fdf69ce3042821b957b4195032
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Body
-    second: {fileID: 2100000, guid: 7580f621684ee8c4c856fa661a8c93d1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Chrome
-    second: {fileID: 2100000, guid: 0832b8503d0491b4e877b6e3594927d3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Combined
-    second: {fileID: 2100000, guid: 8724172d93bd4ae42ac559aacbf6caf2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: 82d8ba0fb1895ae4ea8537c265b6c697, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: PaintedMetal
-    second: {fileID: 2100000, guid: 236223adcdbc8fa47b8f2fefca7d2ef1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: PlasticBlack
-    second: {fileID: 2100000, guid: 0936eab75c85e5a4baeb62ff5ea38f30, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

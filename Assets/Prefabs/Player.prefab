@@ -224,10 +224,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerOnFoot
       objectReference: {fileID: 0}
-    - target: {fileID: 7060780082368852001, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
-      propertyPath: teleTarget
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7516227099623135471, guid: 370edac45eb55a44f9a801ef81daaa36, type: 3}
       propertyPath: cam
       value: 

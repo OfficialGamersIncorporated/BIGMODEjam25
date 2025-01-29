@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class FollowMouse : MonoBehaviour
 {
     public Vector3 pointerPos;
-    [SerializeField] Camera cam;
+    Camera cam;
     [SerializeField] GameObject player;
     [SerializeField] float raycastDistance = 1000;
     InputAction cameraAction;
@@ -16,6 +16,7 @@ public class FollowMouse : MonoBehaviour
 
     void Start()
     {
+        cam = Camera.main;
         cameraAction = InputSystem.actions.FindAction("CameraControl");
     }
 
