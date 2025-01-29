@@ -18,13 +18,12 @@ public class TelekineticHandVisual : MonoBehaviour {
     //Vector3 delayedMidPostion;
     List<Vector3> delayedMidPositions;
 
-    Vector3 lastTargetPos;
+    Vector3 delayedTargetPossition;
     GameObject lastHeldPart = null;
-    Quaternion targetRotation = new Quaternion();
 
     void OnEnable() {
         animator = GetComponent<Animator>();
-        lastTargetPos = cursorPoint.position;
+        delayedTargetPossition = cursorPoint.position;
         delayedMidPositions = new List<Vector3>(nodeCount + 1);
         //delayedMidPostion = targetPoint.position;
         for(int i = 0; i < nodeCount; i++) {
@@ -67,18 +66,20 @@ public class TelekineticHandVisual : MonoBehaviour {
 
             Vector3 targetMidPos = Vector3.Lerp(nextPos, previousPos, 0.5f);
             Vector3 currentMidPos = delayedMidPositions[i];
-            delayedMidPositions[i] = Vector3.Lerp(currentMidPos, targetMidPos, blend);
+            delayedMidPositions[i] = Vector3.Lerp(currentMidPos, targetMidPos, blend) + Physics.gravity * 0.1f * Time.deltaTime;
 
             Transform node = GetNodeFromIndex(i + 1);
             node.position = delayedMidPositions[i];
             node.rotation = Quaternion.LookRotation((nextPos - previousPos).normalized) * Quaternion.Euler(90, 180, 0);
         }
 
-        endNode.position = targetPosition ;
-        endNode.rotation = Quaternion.LookRotation((targetPosition - GetNodeFromIndex(1).position).normalized, Vector3.up) * Quaternion.Euler(90,0,0);
+        //delayedTargetPossition = Vector3.MoveTowards(delayedTargetPossition, targetPosition)
 
-        /*Vector3 targetLookVect = (targetPosition - lastTargetPos); //(followMouse.pointerPos - targetPosition).normalized;
-        lastTargetPos = targetPosition;
+        endNode.position = targetPosition;
+        endNode.rotation = Quaternion.LookRotation((targetPoint.position - GetNodeFromIndex(1).position).normalized, Vector3.up) * Quaternion.Euler(90,0,0);
+
+        /*Vector3 targetLookVect = (targetPosition - delayedTargetPossition); //(followMouse.pointerPos - targetPosition).normalized;
+        delayedTargetPossition = targetPosition;
         if (targetLookVect.magnitude > 0.01f)
             targetRotation = Quaternion.LookRotation(targetLookVect.normalized, Vector3.up) * Quaternion.Euler(90, 0, 0);
         endNode.rotation = Quaternion.Slerp(endNode.rotation, targetRotation, blend);*/
