@@ -17,7 +17,7 @@ public class Vehicle : MonoBehaviour {
     public float BrakeInput = 0;
     public bool UrgencyInput = false;
 
-    WheelControl[] wheels;
+    [HideInInspector] public WheelControl[] wheels;
     Rigidbody rigidBody;
     new public Collider collider;
     public Transform centerOfGravity;

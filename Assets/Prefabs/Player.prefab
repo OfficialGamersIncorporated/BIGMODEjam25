@@ -56,6 +56,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7387097238327347319}
     m_Modifications:
+    - target: {fileID: 1893869452413030711, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7875250480878344815, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
