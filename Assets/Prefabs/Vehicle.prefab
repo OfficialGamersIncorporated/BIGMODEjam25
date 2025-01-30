@@ -704,6 +704,7 @@ MonoBehaviour:
   collider: {fileID: 5695243184088973403}
   centerOfGravity: {fileID: 6843729342171220047}
   driverExitPosition: {fileID: 5987386820051445144}
+  smoothedThrottle: 0
 --- !u!114 &1844420851487416982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,6 +721,8 @@ MonoBehaviour:
   IdleRPM: 800
   maxRPMRateOfChange: 4000
   Gears: 2
+  IdleHighpassFrequency: 500
+  ListenerRearLowpassFrequency: 4000
 --- !u!82 &1893869452413030711
 AudioSource:
   m_ObjectHideFlags: 0

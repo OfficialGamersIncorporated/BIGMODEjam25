@@ -6,21 +6,35 @@ public class VehicleEffects : MonoBehaviour {
     public float IdleRPM = 800;
     public float maxRPMRateOfChange = 2000;
     public int Gears = 4;
+    public float IdleHighpassFrequency = 3000;
+    public float ListenerRearLowpassFrequency = 2200;
 
     float smoothedEngineRPM = 0;
 
     AudioSource engineSound;
     Vehicle vehicleControl;
+    AudioLowPassFilter lowPassFilter;
+    AudioHighPassFilter highPassFilter;
+    new Camera camera;
 
     void Start() {
         engineSound = GetComponent<AudioSource>();
         vehicleControl = GetComponent<Vehicle>();
+        lowPassFilter = GetComponent<AudioLowPassFilter>();
+        highPassFilter = GetComponent<AudioHighPassFilter>();
+        camera = Camera.main;
     }
     void Update() {
         float desiredEngineRPM = GetEngineRPM();
         desiredEngineRPM = Mathf.Max(desiredEngineRPM, IdleRPM);
         smoothedEngineRPM = Mathf.MoveTowards(smoothedEngineRPM, desiredEngineRPM, maxRPMRateOfChange * Time.deltaTime);
         engineSound.pitch = (smoothedEngineRPM / RedlineRPM) * 4;
+
+        Vector3 camToCar = (transform.position - camera.transform.position);
+        float cutoffMultiplier = 1 - (Vector3.Dot(camToCar.normalized, transform.forward) * 0.5f + 0.5f);
+        lowPassFilter.cutoffFrequency = Mathf.Lerp(ListenerRearLowpassFrequency, 22000, cutoffMultiplier);
+
+        highPassFilter.cutoffFrequency = Mathf.Lerp(IdleHighpassFrequency, 10, vehicleControl.smoothedThrottle);
     }
     float GetEngineRPM() {
         float wheelRPM = GetTransOutputRPM();
@@ -35,7 +49,7 @@ public class VehicleEffects : MonoBehaviour {
         float gearRPMMultiplier = topGearRPMMultiplier * ((float)gear / (float)Gears);
         float engineRPM = wheelRPM * (1 / gearRPMMultiplier);
         //print("Gear: " + gear.ToString() + ", RPM: " + Mathf.Round(engineRPM));
-        return engineRPM;
+        return Mathf.Abs(engineRPM);
     }
     float GetWheelRPMAtSpeed(float speed) {
         float circumference = 2 * Mathf.PI * GetAverageDriveWheelRadius();
@@ -44,7 +58,7 @@ public class VehicleEffects : MonoBehaviour {
     }
     int GetGearFromWheelSpeed(float wheelSpeed) {
         // this assumes you'll only be able to shift to the next gear when you hit redline in the previous.
-        return Mathf.CeilToInt((wheelSpeed / vehicleControl.maxSpeed) * Gears);
+        return Mathf.CeilToInt((Mathf.Abs(wheelSpeed) / vehicleControl.maxSpeed) * Gears);
     }
     float GetWheelSpeedFromRPM(float rpm) {
         //float rpm = GetTransOutputRPM();

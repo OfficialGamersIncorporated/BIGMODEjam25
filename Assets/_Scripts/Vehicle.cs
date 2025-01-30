@@ -23,9 +23,9 @@ public class Vehicle : MonoBehaviour {
     public Transform centerOfGravity;
     public Transform driverExitPosition;
 
-    float lastSteer = 0;
-    float lastAccell = 0;
-    float lastBrake = 0;
+    [HideInInspector] public float smoothedThrottle = 0;
+    float smoothedSteer = 0;
+    float smoothedBrake = 0;
     bool lastIsBraking = false;
     bool brakeAsReverse = false;
 
@@ -49,10 +49,10 @@ public class Vehicle : MonoBehaviour {
         
         float sprintModifier = UrgencyInput ? 1.0f : 0.5f;
 
-        lastSteer = Mathf.MoveTowards(lastSteer, SteeringInput, maxSteerRateOfChange * Time.deltaTime);
-        lastAccell = Mathf.MoveTowards(lastAccell, ThrottleInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
-        lastBrake = Mathf.MoveTowards(lastBrake, BrakeInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
-        float signedAccellInput = lastAccell - lastBrake;
+        smoothedSteer = Mathf.MoveTowards(smoothedSteer, SteeringInput, maxSteerRateOfChange * Time.deltaTime);
+        smoothedThrottle = Mathf.MoveTowards(smoothedThrottle, ThrottleInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
+        smoothedBrake = Mathf.MoveTowards(smoothedBrake, BrakeInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
+        float signedAccellInput = smoothedThrottle - smoothedBrake;
 
         // Calculate current speed in relation to the forward direction of the car
         // (this returns a negative number when traveling backwards)
@@ -87,18 +87,18 @@ public class Vehicle : MonoBehaviour {
         if (canBrakeAsReverse)
             isAccelerating = Mathf.Sign(signedAccellInput) == Mathf.Sign(forwardSpeed);
         else
-            isAccelerating = lastBrake == 0; //Mathf.Sign(vInput) == Mathf.Sign(forwardSpeed);
+            isAccelerating = smoothedBrake == 0; //Mathf.Sign(vInput) == Mathf.Sign(forwardSpeed);
 
         foreach(var wheel in wheels) {
             // Apply steering to Wheel colliders that have "Steerable" enabled
             if(wheel.steerable) {
-                wheel.WheelCollider.steerAngle = lastSteer * currentSteerRange;
+                wheel.WheelCollider.steerAngle = smoothedSteer * currentSteerRange;
             }
 
             if(isAccelerating) {
                 // Apply torque to Wheel colliders that have "Motorized" enabled
                 if(wheel.motorized) {
-                    float currAccell = lastAccell;
+                    float currAccell = smoothedThrottle;
                     if(brakeAsReverse) currAccell = signedAccellInput;
                     wheel.WheelCollider.motorTorque = currAccell * currentMotorTorque;
                 }
