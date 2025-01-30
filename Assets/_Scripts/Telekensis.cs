@@ -50,9 +50,14 @@ public class Telekensis : MonoBehaviour {
 
         if(Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, objectLayer)) {
             if(hitData.transform.gameObject != null) {
+                GameObject hitObj = hitData.transform.gameObject;
+                if(!hitObj.CompareTag("Telekinetic")) return;
+
+                partRB = hitObj.GetComponent<Rigidbody>();
+                if(!partRB) return;
+
                 holdingPart = true;
-                heldPart = hitData.transform.gameObject;
-                partRB = heldPart.GetComponent<Rigidbody>();
+                heldPart = hitObj;
                 partRB.useGravity = false;
                 partRB.isKinematic = false;
             }
