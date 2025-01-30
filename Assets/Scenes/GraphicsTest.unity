@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6842705544794881333, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 11dd068cc5649b6488498d42fbf410b1, type: 3}
     - target: {fileID: 7387097238327347319, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -239,7 +243,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3953551970271725981, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005562443}
+    - targetCorrespondingSourceObject: {fileID: 3953551970271725981, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005562442}
   m_SourcePrefab: {fileID: 100100000, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
 --- !u!1 &203844586
 GameObject:
@@ -499,6 +509,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1005562436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3953551970271725981, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+  m_PrefabInstance: {fileID: 144103672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!165 &1005562442
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005562436}
+  m_Enabled: 1
+  m_CutoffFrequency: 3000
+  m_HighpassResonanceQ: 1
+--- !u!169 &1005562443
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005562436}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.099590726
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1945510530
 GameObject:
   m_ObjectHideFlags: 0
