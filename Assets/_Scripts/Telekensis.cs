@@ -14,7 +14,7 @@ public class Telekensis : MonoBehaviour {
     public float TeleDrag = 0.5f; // why are the lines above so verbose? Why serialized AND public? I smell auto-generated code...
     Rigidbody partRB;
     bool holdingPart = false;
-
+    GameObject lastHovered;
 
     void Start() {
         teleknesisAction = InputSystem.actions.FindAction("Attack");
@@ -22,6 +22,16 @@ public class Telekensis : MonoBehaviour {
     }
 
     void Update() {
+        if(!holdingPart) {
+            GameObject hovered = GetHovered();
+            if (hovered != lastHovered) {
+                if(lastHovered)
+                    lastHovered.layer = LayerMask.NameToLayer("Default");
+                lastHovered = hovered;
+                if (hovered)
+                    hovered.layer = LayerMask.NameToLayer("TelekinesisHover");
+            }
+        }
         if(teleknesisAction.WasPressedThisFrame()) {
             SelectObject();
         }
@@ -45,28 +55,37 @@ public class Telekensis : MonoBehaviour {
         }
     }
 
-    void SelectObject() {
+    GameObject GetHovered() {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, objectLayer)) {
-            if(hitData.transform.gameObject != null) {
-                GameObject hitObj = hitData.transform.gameObject;
-                if(!hitObj.CompareTag("Telekinetic")) return;
+        if(!Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, objectLayer)) return null;
+        if(hitData.transform.gameObject == null) return null;
 
-                partRB = hitObj.GetComponent<Rigidbody>();
-                if(!partRB) return;
+        GameObject hitObj = hitData.transform.gameObject;
+        if(!hitObj.CompareTag("Telekinetic")) return null;
 
-                holdingPart = true;
-                heldPart = hitObj;
-                partRB.useGravity = false;
-                partRB.isKinematic = false;
-            }
-        }
+        return hitObj;
+    }
+    void SelectObject() {
+        GameObject hitObj = GetHovered();
+        if(!hitObj) return;
+
+        partRB = hitObj.GetComponent<Rigidbody>();
+        if(!partRB) return;
+
+        holdingPart = true;
+        heldPart = hitObj;
+        partRB.useGravity = false;
+        partRB.isKinematic = false;
+        heldPart.layer = LayerMask.NameToLayer("TelekinesisHover");
     }
     void ReleaseObject() {
         if(partRB != null) {
             partRB.useGravity = true;
         }
+
+        if (heldPart)
+            heldPart.layer = LayerMask.NameToLayer("Default");
 
         heldPart = null;
         partRB = null;
