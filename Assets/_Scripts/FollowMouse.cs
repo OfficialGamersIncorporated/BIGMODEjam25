@@ -10,7 +10,7 @@ public class FollowMouse : MonoBehaviour {
     [SerializeField] float flySpeed;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float yOffset = 0.5f;
-    [SerializeField] float maxRange = 30;
+    [HideInInspector] public float maxRange = 30;
     public bool matchPlayerHeight = true;
 
     void Start() {

@@ -147,7 +147,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  yOffset: 0.5
+  yOffset: 1
+  maxRange: 15
   matchPlayerHeight: 0
 --- !u!23 &6973012624570843274
 MeshRenderer:

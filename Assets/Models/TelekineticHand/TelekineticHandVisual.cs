@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TelekineticHandVisual : MonoBehaviour {
 
@@ -14,14 +15,16 @@ public class TelekineticHandVisual : MonoBehaviour {
     public Vector3 handGripPointOffset;
 
     Animator animator;
+    InputAction teleknesisAction;
 
     //Vector3 delayedMidPostion;
     List<Vector3> delayedMidPositions;
 
     Vector3 delayedTargetPossition;
-    GameObject lastHeldPart = null;
+    //GameObject lastHeldPart = null;
 
     void OnEnable() {
+        teleknesisAction = InputSystem.actions.FindAction("Attack");
         animator = GetComponent<Animator>();
         delayedTargetPossition = cursorPoint.position;
         delayedMidPositions = new List<Vector3>(nodeCount + 1);
@@ -44,13 +47,17 @@ public class TelekineticHandVisual : MonoBehaviour {
         if(telekensis.heldPart) targetPoint = telekensis.heldPart.transform;
         Vector3 targetPosition = targetPoint.position + endNode.rotation * handGripPointOffset;
 
-        if (telekensis.heldPart != lastHeldPart) {
+        /*if (telekensis.heldPart != lastHeldPart) {
             lastHeldPart = telekensis.heldPart;
             if(telekensis.heldPart)
                 animator.SetTrigger("Closed");
             else
                 animator.SetTrigger("Opened");
-        }
+        }*/
+        if(teleknesisAction.WasPressedThisFrame())
+            animator.SetTrigger("Closed");
+        else if (teleknesisAction.WasReleasedThisFrame())
+            animator.SetTrigger("Opened");
 
         float blend = 1 - Mathf.Pow(0.5f, Time.deltaTime * armDragLerpSpeed);
 

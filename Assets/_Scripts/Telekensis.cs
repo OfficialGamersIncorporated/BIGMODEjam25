@@ -11,7 +11,8 @@ public class Telekensis : MonoBehaviour {
     [SerializeField] FollowMouse teleTarget;
     [field: SerializeField] public float TeleForce { get; private set; } = 5f;
     [field: SerializeField] public float TeleSpeed { get; private set; } = 5f;
-    public float TeleDrag = 0.5f; // why are the lines above so verbose? Why serialized AND public? I smell auto-generated code...
+    [SerializeField] float TeleDrag = 0.5f;
+    [SerializeField] float maxRange = 15;
     Rigidbody partRB;
     bool holdingPart = false;
     GameObject lastHovered;
@@ -19,6 +20,7 @@ public class Telekensis : MonoBehaviour {
     void Start() {
         teleknesisAction = InputSystem.actions.FindAction("Attack");
         cam = Camera.main;
+        teleTarget.maxRange = maxRange;
     }
 
     void Update() {
@@ -60,9 +62,13 @@ public class Telekensis : MonoBehaviour {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         if(!Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, objectLayer)) return null;
-        if(hitData.transform.gameObject == null) return null;
 
+        if(hitData.transform.gameObject == null) return null;
         GameObject hitObj = hitData.transform.gameObject;
+
+        if(Vector3.Distance(hitObj.transform.position, PlayerFocusControl.Instance.GetCurrentPlayer().transform.position) > maxRange)
+            return null;
+
         if(!hitObj.CompareTag("Telekinetic")) return null;
 
         return hitObj;
