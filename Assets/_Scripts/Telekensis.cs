@@ -8,7 +8,7 @@ public class Telekensis : MonoBehaviour {
 
     [SerializeField] LayerMask objectLayer;
     public GameObject heldPart;
-    [SerializeField] GameObject teleTarget;
+    [SerializeField] FollowMouse teleTarget;
     [field: SerializeField] public float TeleForce { get; private set; } = 5f;
     [field: SerializeField] public float TeleSpeed { get; private set; } = 5f;
     public float TeleDrag = 0.5f; // why are the lines above so verbose? Why serialized AND public? I smell auto-generated code...
@@ -32,6 +32,7 @@ public class Telekensis : MonoBehaviour {
                     hovered.layer = LayerMask.NameToLayer("TelekinesisHover");
             }
         }
+        teleTarget.matchPlayerHeight = holdingPart;
         if(teleknesisAction.WasPressedThisFrame()) {
             SelectObject();
         }

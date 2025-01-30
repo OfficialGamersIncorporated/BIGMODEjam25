@@ -148,6 +148,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   yOffset: 0.5
+  matchPlayerHeight: 0
 --- !u!23 &6973012624570843274
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3122773402729161377}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -246,9 +247,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 257
   heldPart: {fileID: 0}
-  teleTarget: {fileID: 3122773402729161377}
+  teleTarget: {fileID: 8247561818370583572}
   <TeleForce>k__BackingField: 500
   <TeleSpeed>k__BackingField: 50
   TeleDrag: 0.1
