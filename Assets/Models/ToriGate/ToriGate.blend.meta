@@ -3,7 +3,12 @@ guid: 5f87bf7b6aca6014ab004ec49cd4bf54
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToriGate
+    second: {fileID: 2100000, guid: f284a5c4861b27c408b874156301a1fa, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
