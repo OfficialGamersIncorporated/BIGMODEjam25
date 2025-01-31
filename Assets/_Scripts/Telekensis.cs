@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Analytics.IAnalytic;
 
 public class Telekensis : MonoBehaviour {
     InputAction teleknesisAction;
@@ -58,7 +59,7 @@ public class Telekensis : MonoBehaviour {
         }
     }
 
-    GameObject GetHovered() {
+    GameObject GetHoveredPrecise() {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         if(!Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, objectLayer)) return null;
@@ -72,6 +73,39 @@ public class Telekensis : MonoBehaviour {
         if(!hitObj.CompareTag("Telekinetic")) return null;
 
         return hitObj;
+    }
+
+    GameObject GetHovered() {
+
+        GameObject directlyUnderMouse = GetHoveredPrecise();
+        if(directlyUnderMouse) return directlyUnderMouse;
+
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hitDataList = Physics.SphereCastAll(ray, 2f, raycastDistance, objectLayer);
+
+        GameObject closestObj = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach(RaycastHit hitData in hitDataList) {
+            if(hitData.transform.gameObject == null) continue;
+            GameObject hitObj = hitData.transform.gameObject;
+
+            if(Vector3.Distance(hitObj.transform.position, PlayerFocusControl.Instance.GetCurrentPlayer().transform.position) > maxRange)
+                continue;
+
+            if(!hitObj.CompareTag("Telekinetic")) continue;
+
+            Vector3 toObjectVect = (hitObj.transform.position - ray.origin);
+            Vector3 closestPointOnLine = Vector3.Project(toObjectVect, ray.direction);
+            float distance = Vector3.Distance(toObjectVect, closestPointOnLine);
+
+            if (distance <= closestDistance) {
+                closestDistance = distance;
+                closestObj = hitObj;
+            }
+        }
+
+        return closestObj;
     }
     void SelectObject() {
         GameObject hitObj = GetHovered();
