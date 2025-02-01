@@ -127,6 +127,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: 2
       addedObject: {fileID: 956166399987369859}
+    - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2044239376155498856}
+    - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2260508595853461501}
   m_SourcePrefab: {fileID: 100100000, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
 --- !u!1 &2289973247480574452 stripped
 GameObject:
@@ -145,9 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b281f4393ddb5438495ce7fbbe64d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardAcceleration: 100
-  turningAcceleration: 100
-  reverseAcceleration: 100
   distanceToTarget: 0
   localTargetVector: {x: 0, y: 0, z: 0}
   range: 500
@@ -159,3 +162,38 @@ MonoBehaviour:
   back: 0
   left: 0
   right: 0
+--- !u!169 &2044239376155498856
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289973247480574452}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.099590726
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &2260508595853461501
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289973247480574452}
+  m_Enabled: 1
+  m_CutoffFrequency: 3000
+  m_HighpassResonanceQ: 1

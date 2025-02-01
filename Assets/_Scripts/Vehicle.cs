@@ -21,7 +21,7 @@ public class Vehicle : MonoBehaviour {
     Rigidbody rigidBody;
     Collider[] colliders;
     public Transform centerOfGravity;
-    public Transform driverExitPosition;
+    //public Transform driverExitPosition;
 
     [HideInInspector] public float smoothedThrottle = 0;
     float smoothedSteer = 0;

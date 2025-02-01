@@ -101,7 +101,7 @@ public class PlayerFocusControl : MonoBehaviour {
                 PlayerOnFoot.isDashPressed = sprintValue;
                 PlayerOnFoot.isJumpPressed = jumpValue;
                 if(!PlayerOnFoot.gameObject.activeSelf) {
-                    PlayerOnFoot.transform.position = PlayerVehicle.driverExitPosition.position;
+                    //PlayerOnFoot.transform.position = PlayerVehicle.driverExitPosition.position;
 
                     Rigidbody vehicleBody = PlayerOnFoot.GetComponent<Rigidbody>();
                     Rigidbody onFootBody = PlayerVehicle.GetComponent<Rigidbody>();
