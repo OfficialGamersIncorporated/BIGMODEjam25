@@ -23,10 +23,10 @@ public class Vehicle : MonoBehaviour {
     public Transform centerOfGravity;
     //public Transform driverExitPosition;
 
-    [HideInInspector] public float smoothedThrottle = 0;
-    float smoothedSteer = 0;
-    float smoothedBrake = 0;
-    bool lastIsBraking = false;
+    public float SmoothedThrottle { get; private set; } = 0;
+    public float SmoothedSteer { get; private set; } = 0;
+    public float SmoothedBrake { get; private set; } = 0;
+    public bool LastIsBraking { get; private set; } = false;
     bool brakeAsReverse = false;
 
     // Start is called before the first frame update
@@ -54,10 +54,10 @@ public class Vehicle : MonoBehaviour {
         
         float sprintModifier = UrgencyInput ? 1.0f : 0.5f;
 
-        smoothedSteer = Mathf.MoveTowards(smoothedSteer, SteeringInput, maxSteerRateOfChange * Time.deltaTime);
-        smoothedThrottle = Mathf.MoveTowards(smoothedThrottle, ThrottleInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
-        smoothedBrake = Mathf.MoveTowards(smoothedBrake, BrakeInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
-        float signedAccellInput = smoothedThrottle - smoothedBrake;
+        SmoothedSteer = Mathf.MoveTowards(SmoothedSteer, SteeringInput, maxSteerRateOfChange * Time.deltaTime);
+        SmoothedThrottle = Mathf.MoveTowards(SmoothedThrottle, ThrottleInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
+        SmoothedBrake = Mathf.MoveTowards(SmoothedBrake, BrakeInput * sprintModifier, maxThrottleRateOfChange * sprintModifier * Time.deltaTime);
+        float signedAccellInput = SmoothedThrottle - SmoothedBrake;
 
         // Calculate current speed in relation to the forward direction of the car
         // (this returns a negative number when traveling backwards)
@@ -82,7 +82,7 @@ public class Vehicle : MonoBehaviour {
         if(!repeatBrakeForReverse) {
             brakeAsReverse = canBrakeAsReverse;
         } else {
-            if(canBrakeAsReverse && forwardSpeed <= 1 && !lastIsBraking && BrakeInput > 0.1f) {
+            if(canBrakeAsReverse && forwardSpeed <= 1 && !LastIsBraking && BrakeInput > 0.1f) {
                 brakeAsReverse = true;
             }
         }
@@ -92,18 +92,18 @@ public class Vehicle : MonoBehaviour {
         if (canBrakeAsReverse)
             isAccelerating = Mathf.Sign(signedAccellInput) == Mathf.Sign(forwardSpeed);
         else
-            isAccelerating = smoothedBrake == 0; //Mathf.Sign(vInput) == Mathf.Sign(forwardSpeed);
+            isAccelerating = SmoothedBrake == 0; //Mathf.Sign(vInput) == Mathf.Sign(forwardSpeed);
 
         foreach(var wheel in wheels) {
             // Apply steering to Wheel colliders that have "Steerable" enabled
             if(wheel.steerable) {
-                wheel.WheelCollider.steerAngle = smoothedSteer * currentSteerRange;
+                wheel.WheelCollider.steerAngle = SmoothedSteer * currentSteerRange;
             }
 
             if(isAccelerating) {
                 // Apply torque to Wheel colliders that have "Motorized" enabled
                 if(wheel.motorized) {
-                    float currAccell = smoothedThrottle;
+                    float currAccell = SmoothedThrottle;
                     if(brakeAsReverse) currAccell = signedAccellInput;
                     wheel.WheelCollider.motorTorque = currAccell * currentMotorTorque;
                 }
@@ -116,6 +116,6 @@ public class Vehicle : MonoBehaviour {
             }
         }
 
-        lastIsBraking = BrakeInput > 0.1f;
+        LastIsBraking = BrakeInput > 0.1f;
     }
 }
