@@ -30,9 +30,25 @@ public class EnemyVehicleControl : MonoBehaviour
     [SerializeField] bool left;
     [SerializeField] bool right;
 
+
+    float currentThrottle;
+    float currentSteer;
+    float currentBrake;
+    bool waitImBraking;
+
+    /* Exposed in Vehicle.cs
+    SmoothedThrottle
+    SmoothedSteer
+    SmoothedBrake
+    LastIsBraking
+    */
+
+
     void Start()
     {
         vehicleControl = GetComponent<Vehicle>();
+
+        GetVehicleControlStats();
 
         playerFocusControl = PlayerFocusControl.Instance;
         if (playerFocusControl != null)
@@ -46,6 +62,8 @@ public class EnemyVehicleControl : MonoBehaviour
 
     void Update()
     {
+        GetVehicleControlStats();
+
         if (hasTarget)
         {
             predictTarget = (targetRB.linearVelocity / 2) + targetGo.transform.position;
@@ -120,6 +138,14 @@ public class EnemyVehicleControl : MonoBehaviour
     //        yield return null;
     //    }
     //}
+
+    void GetVehicleControlStats()
+    {
+        currentThrottle = vehicleControl.SmoothedThrottle;
+        currentSteer = vehicleControl.SmoothedSteer;
+        currentBrake = vehicleControl.SmoothedBrake;
+        waitImBraking = vehicleControl.LastIsBraking;
+    }
 
 
 

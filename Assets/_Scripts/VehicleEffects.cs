@@ -34,7 +34,7 @@ public class VehicleEffects : MonoBehaviour {
         float cutoffMultiplier = 1 - (Vector3.Dot(camToCar.normalized, transform.forward) * 0.5f + 0.5f);
         lowPassFilter.cutoffFrequency = Mathf.Lerp(ListenerRearLowpassFrequency, 22000, cutoffMultiplier);
 
-        highPassFilter.cutoffFrequency = Mathf.Lerp(IdleHighpassFrequency, 10, vehicleControl.smoothedThrottle);
+        highPassFilter.cutoffFrequency = Mathf.Lerp(IdleHighpassFrequency, 10, vehicleControl.SmoothedThrottle);
     }
     float GetEngineRPM() {
         float wheelRPM = GetTransOutputRPM();
