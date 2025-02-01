@@ -19,6 +19,8 @@ public class WheelControl : MonoBehaviour {
         set {
             _isFlat = value;
 
+            MeshRenderer mesh = wheelModel.GetComponent<MeshRenderer>();
+
             // these variables HAVE to be defined. If you try to set stiffness all in one line you'll get an error.
             WheelFrictionCurve forwardCurve = WheelCollider.forwardFriction;
             WheelFrictionCurve sidewaysCurve = WheelCollider.sidewaysFriction;
@@ -27,10 +29,12 @@ public class WheelControl : MonoBehaviour {
                 WheelCollider.radius = flatRadius;
                 forwardCurve.stiffness = flatStiffness;
                 sidewaysCurve.stiffness = flatStiffness;
+                if(mesh) mesh.material.SetFloat("_Influence", 1);
             } else {
                 WheelCollider.radius = startRadius;
                 forwardCurve.stiffness = 1;
                 sidewaysCurve.stiffness = 1;
+                if(mesh) mesh.material.SetFloat("_Influence", 0);
             }
 
             WheelCollider.forwardFriction = forwardCurve;

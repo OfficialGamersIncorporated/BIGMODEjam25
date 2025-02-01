@@ -5,19 +5,38 @@ using static UnityEngine.GraphicsBuffer;
 public class VehicleHealth : MonoBehaviour {
 
     Vehicle vehicleControl;
+    Animator vehicleAnimator;
 
     void Start() {
         vehicleControl = GetComponent<Vehicle>();
+        vehicleAnimator = GetComponentInChildren<Animator>();
     }
     void Update() {
 
     }
 
+    public void Damage() {
+        TryPopATire();
+    }
+    public void Heal() {
+        TryFixATire();
+        vehicleAnimator.SetTrigger("Heal");
+    }
+
     public bool TryPopATire() {
         foreach(WheelControl wheel in vehicleControl.wheels) {
-            if(wheel.isFlat)continue;
+            if(wheel.isFlat) continue;
 
             wheel.isFlat = true;
+            return true;
+        }
+        return false;
+    }
+    public bool TryFixATire() {
+        foreach(WheelControl wheel in vehicleControl.wheels) {
+            if(!wheel.isFlat) continue;
+
+            wheel.isFlat = false;
             return true;
         }
         return false;
@@ -32,6 +51,9 @@ public class VehicleHealthEditor : Editor {
         VehicleHealth myScript = (VehicleHealth)target;
         if(GUILayout.Button("Pop a tire!")) {
             myScript.TryPopATire();
+        }
+        if(GUILayout.Button("Fix a tire!")) {
+            myScript.Heal();
         }
     }
 }

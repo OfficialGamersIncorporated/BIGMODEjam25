@@ -19,7 +19,7 @@ public class Vehicle : MonoBehaviour {
 
     [HideInInspector] public WheelControl[] wheels;
     Rigidbody rigidBody;
-    new public Collider collider;
+    Collider[] colliders;
     public Transform centerOfGravity;
     public Transform driverExitPosition;
 
@@ -37,10 +37,15 @@ public class Vehicle : MonoBehaviour {
         //rigidBody.centerOfMass += Vector3.up * centreOfGravityOffset;
         rigidBody.centerOfMass = centerOfGravity.localPosition;
 
+        colliders = GetComponentsInChildren<Collider>();
+
         // Find all child GameObjects that have the WheelControl script attached
         wheels = GetComponentsInChildren<WheelControl>();
         foreach(WheelCollider wheel in GetComponentsInChildren<WheelCollider>()) {
-            Physics.IgnoreCollision(collider, wheel);
+            foreach(Collider collider in colliders) {
+                if(collider is WheelCollider) continue;
+                Physics.IgnoreCollision(collider, wheel);
+            }
         }
     }
 

@@ -59,7 +59,185 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Idle
+      takeName: Armature|Idle
+      internalID: -8945691123924629249
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Door.l
+        weight: 1
+      - path: Armature/Root/Door.l/Door.L
+        weight: 1
+      - path: Armature/Root/Door.l/Door.L/WingMirror.L
+        weight: 1
+      - path: Armature/Root/Door.l/Door.l_end
+        weight: 1
+      - path: Armature/Root/Door.r
+        weight: 1
+      - path: Armature/Root/Door.r/Door.L.001
+        weight: 1
+      - path: Armature/Root/Door.r/Door.L.001/WingMirror.L.001
+        weight: 1
+      - path: Armature/Root/Door.r/Door.r_end
+        weight: 1
+      - path: Armature/Root/Hood
+        weight: 1
+      - path: Armature/Root/Hood/Hood
+        weight: 1
+      - path: Armature/Root/Hood/Hood_end
+        weight: 1
+      - path: Armature/Root/Tailgate
+        weight: 1
+      - path: Armature/Root/Tailgate/Tailgate
+        weight: 1
+      - path: Armature/Root/Tailgate/Tailgate_end
+        weight: 1
+      - path: Body
+        weight: 0
+      - path: BumperFront
+        weight: 0
+      - path: BumperRear
+        weight: 0
+      - path: Collider_BedFloor
+        weight: 0
+      - path: Collider_BedLeft
+        weight: 0
+      - path: Collider_BedRight
+        weight: 0
+      - path: Collider_Body
+        weight: 0
+      - path: Frame
+        weight: 0
+      - path: Grille
+        weight: 0
+      - path: WheelF.l
+        weight: 0
+      - path: WheelF.r
+        weight: 0
+      - path: WheelR.l
+        weight: 0
+      - path: WheelR.r
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Repair
+      takeName: Armature|Repair
+      internalID: -628776715540715801
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Door.l
+        weight: 1
+      - path: Armature/Root/Door.l/Door.L
+        weight: 1
+      - path: Armature/Root/Door.l/Door.L/WingMirror.L
+        weight: 1
+      - path: Armature/Root/Door.l/Door.l_end
+        weight: 1
+      - path: Armature/Root/Door.r
+        weight: 1
+      - path: Armature/Root/Door.r/Door.L.001
+        weight: 1
+      - path: Armature/Root/Door.r/Door.L.001/WingMirror.L.001
+        weight: 1
+      - path: Armature/Root/Door.r/Door.r_end
+        weight: 1
+      - path: Armature/Root/Hood
+        weight: 1
+      - path: Armature/Root/Hood/Hood
+        weight: 1
+      - path: Armature/Root/Hood/Hood_end
+        weight: 1
+      - path: Armature/Root/Tailgate
+        weight: 1
+      - path: Armature/Root/Tailgate/Tailgate
+        weight: 1
+      - path: Armature/Root/Tailgate/Tailgate_end
+        weight: 1
+      - path: Body
+        weight: 0
+      - path: BumperFront
+        weight: 0
+      - path: BumperRear
+        weight: 0
+      - path: Collider_BedFloor
+        weight: 0
+      - path: Collider_BedLeft
+        weight: 0
+      - path: Collider_BedRight
+        weight: 0
+      - path: Collider_Body
+        weight: 0
+      - path: Frame
+        weight: 0
+      - path: Grille
+        weight: 0
+      - path: WheelF.l
+        weight: 0
+      - path: WheelF.r
+        weight: 0
+      - path: WheelR.l
+        weight: 0
+      - path: WheelR.r
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
