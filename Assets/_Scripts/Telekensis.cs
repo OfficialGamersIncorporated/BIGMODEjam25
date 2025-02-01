@@ -62,7 +62,7 @@ public class Telekensis : MonoBehaviour {
     GameObject GetHoveredPrecise() {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if(!Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, objectLayer)) return null;
+        if(!Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, objectLayer, QueryTriggerInteraction.Collide)) return null;
 
         if(hitData.transform.gameObject == null) return null;
         GameObject hitObj = hitData.collider.transform.gameObject;
@@ -81,7 +81,7 @@ public class Telekensis : MonoBehaviour {
         if(directlyUnderMouse) return directlyUnderMouse;
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit[] hitDataList = Physics.SphereCastAll(ray, 2f, raycastDistance, objectLayer);
+        RaycastHit[] hitDataList = Physics.SphereCastAll(ray, 2f, raycastDistance, objectLayer, QueryTriggerInteraction.Collide);
 
         GameObject closestObj = null;
         float closestDistance = Mathf.Infinity;

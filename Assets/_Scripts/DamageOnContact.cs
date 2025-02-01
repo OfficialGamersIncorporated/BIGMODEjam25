@@ -8,7 +8,7 @@ public class DamageOnContact : MonoBehaviour {
         VehicleHealth damagable = collision.gameObject.GetComponent<VehicleHealth>();
         if(!damagable) return;
 
-        damagable.Damage();
+        damagable.TryDamage();
         if (DestroyOnDamage) Destroy(gameObject);
     }
 

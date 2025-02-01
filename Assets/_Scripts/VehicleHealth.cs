@@ -14,12 +14,13 @@ public class VehicleHealth : MonoBehaviour {
 
     }
 
-    public void Damage() {
-        TryPopATire();
+    public bool TryDamage() {
+        return TryPopATire();
     }
-    public void Heal() {
-        TryFixATire();
-        vehicleAnimator.SetTrigger("Heal");
+    public bool TryHeal() {
+        bool worked = TryFixATire();
+        if (worked) vehicleAnimator.SetTrigger("Heal");
+        return worked;
     }
     public bool TryPopATire() {
         foreach(WheelControl wheel in vehicleControl.wheels) {
@@ -51,7 +52,7 @@ public class VehicleHealthEditor : Editor {
             myScript.TryPopATire();
         }
         if(GUILayout.Button("Fix a tire!")) {
-            myScript.Heal();
+            myScript.TryHeal();
         }
     }
 }
