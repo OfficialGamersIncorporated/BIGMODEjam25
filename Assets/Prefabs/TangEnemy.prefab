@@ -313,6 +313,10 @@ PrefabInstance:
       value: WheelRL
       objectReference: {fileID: 0}
     - target: {fileID: -5302550446386553164, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -5302550446386553164, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
       propertyPath: m_TagString
       value: Telekinetic
       objectReference: {fileID: 0}
@@ -341,6 +345,10 @@ PrefabInstance:
       value: WheelFL
       objectReference: {fileID: 0}
     - target: {fileID: 2309235252557226698, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309235252557226698, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
       propertyPath: m_TagString
       value: Telekinetic
       objectReference: {fileID: 0}
@@ -357,6 +365,10 @@ PrefabInstance:
       value: WheelFR
       objectReference: {fileID: 0}
     - target: {fileID: 7089708894920431706, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7089708894920431706, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
       propertyPath: m_TagString
       value: Telekinetic
       objectReference: {fileID: 0}
@@ -367,6 +379,10 @@ PrefabInstance:
     - target: {fileID: 7379814607981251909, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
       propertyPath: m_Name
       value: WheelRR
+      objectReference: {fileID: 0}
+    - target: {fileID: 7379814607981251909, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7379814607981251909, guid: c05e54c273b056b44b50dce202740eaf, type: 3}
       propertyPath: m_TagString
