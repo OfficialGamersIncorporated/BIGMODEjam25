@@ -111,6 +111,13 @@ public class Telekensis : MonoBehaviour {
         GameObject hitObj = GetHovered();
         if(!hitObj) return;
 
+        TelekinesisInteractTarget interactTarget = hitObj.GetComponent<TelekinesisInteractTarget>();
+        if(interactTarget) {
+            Rigidbody gotRB = interactTarget.Grab();
+            if(gotRB) hitObj = gotRB.gameObject;
+            else return;
+        }
+
         partRB = hitObj.GetComponent<Rigidbody>();
         if(!partRB) return;
 

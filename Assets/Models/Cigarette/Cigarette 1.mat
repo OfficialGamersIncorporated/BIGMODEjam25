@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cigarette
+  m_Name: Cigarette 1
   m_Shader: {fileID: -6465566751694194690, guid: d2d4f65c2b6bafb4abff7feb49328769, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

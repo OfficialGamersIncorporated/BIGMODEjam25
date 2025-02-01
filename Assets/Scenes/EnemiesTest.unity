@@ -516,10 +516,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TangEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7698943430525314365, guid: 9bb399f6c68ccca4ba5dbd098ea1b092, type: 3}
-      propertyPath: m_Mass
-      value: 1355
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
