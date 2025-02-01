@@ -139,6 +139,7 @@ public class EnemyMovementV2 : MonoBehaviour
             if (currentThrottle < throttleGoal)
             {
                 moveValue.y += throttleSpeed * Time.deltaTime;
+                moveValue.x = Mathf.Clamp(moveValue.x, -1, 1);
             }
             else if (currentThrottle > throttleGoal)
             {
@@ -153,6 +154,9 @@ public class EnemyMovementV2 : MonoBehaviour
             {
                 moveValue.x += steerSpeed * Time.deltaTime;
             }
+
+            moveValue.x = Mathf.Clamp(moveValue.x, -1, 1);
+            moveValue.y = Mathf.Clamp(moveValue.y, -1, 1);
 
 
             /*
@@ -216,11 +220,11 @@ public class EnemyMovementV2 : MonoBehaviour
         movementState = MovementState.Back;
         throttleGoal = -1;
         coin = Random.Range(0, 2);
-        if (coin == 1)
+        if (coin == 0)
         {
             steeringGoal = 1;
         }
-        else if (coin == 2)
+        else if (coin == 1)
         {
             steeringGoal = -1;
         }
