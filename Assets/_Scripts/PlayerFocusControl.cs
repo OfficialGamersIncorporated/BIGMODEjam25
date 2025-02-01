@@ -27,7 +27,7 @@ public class PlayerFocusControl : MonoBehaviour {
     InputAction moveAction;
     InputAction sprintAction;
     InputAction jumpAction;
-    InputAction interactAction;
+    //InputAction interactAction;
 
     void Awake()
     {
@@ -39,7 +39,7 @@ public class PlayerFocusControl : MonoBehaviour {
 
         if (playerFocus == PlayerFocus.Vehicle)
         {
-            PlayerOnFoot.gameObject.SetActive(false);
+            //PlayerOnFoot.gameObject.SetActive(false);
             RefreshCameraTarget();
         }
     }
@@ -50,7 +50,7 @@ public class PlayerFocusControl : MonoBehaviour {
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
-        interactAction = InputSystem.actions.FindAction("Interact");
+        //interactAction = InputSystem.actions.FindAction("Interact");
 
 
     }
@@ -66,12 +66,12 @@ public class PlayerFocusControl : MonoBehaviour {
         bool sprintValue = sprintAction.IsPressed();
         bool jumpValue = jumpAction.IsPressed();
 
-        if(interactAction.WasPressedThisFrame()) {
-            if(playerFocus == PlayerFocus.OnFoot)
-                playerFocus = PlayerFocus.Vehicle;
-            else
-                playerFocus = PlayerFocus.OnFoot;
-        }
+        //if(interactAction.WasPressedThisFrame()) {
+        //    if(playerFocus == PlayerFocus.OnFoot)
+        //        playerFocus = PlayerFocus.Vehicle;
+        //    else
+        //        playerFocus = PlayerFocus.OnFoot;
+        //}
 
         if (playerFocus != lastPlayerFocus){
             RefreshCameraTarget();

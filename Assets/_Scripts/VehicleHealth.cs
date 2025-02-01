@@ -5,11 +5,10 @@ using static UnityEngine.GraphicsBuffer;
 public class VehicleHealth : MonoBehaviour {
 
     Vehicle vehicleControl;
-    Animator vehicleAnimator;
+    public Animator vehicleAnimator;
 
     void Start() {
         vehicleControl = GetComponent<Vehicle>();
-        vehicleAnimator = GetComponentInChildren<Animator>();
     }
     void Update() {
 

@@ -25,9 +25,10 @@ public class Blast : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player"))
+        other.TryGetComponent<Rigidbody>(out Rigidbody otherRB);
+        if (!other.CompareTag("Player") && otherRB != null)
         {
-            other.GetComponent<Rigidbody>().AddForceAtPosition
+            otherRB.AddForceAtPosition
                 (
                     (other.transform.position - transform.position) * blastForce,
                     other.transform.position,
