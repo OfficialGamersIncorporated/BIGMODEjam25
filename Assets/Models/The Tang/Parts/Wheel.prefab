@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5315689284268618990}
   - component: {fileID: 3701435389446207794}
   - component: {fileID: -2201398347973351960}
+  - component: {fileID: -3060384936316005580}
   m_Layer: 0
   m_Name: Wheel
   m_TagString: Telekinetic
@@ -136,3 +137,15 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-3060384936316005580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3101668919727144590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9da78d6fdcdbe944a0ffcf9ae1eff4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

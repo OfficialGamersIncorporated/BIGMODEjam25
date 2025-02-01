@@ -21,7 +21,6 @@ public class VehicleHealth : MonoBehaviour {
         TryFixATire();
         vehicleAnimator.SetTrigger("Heal");
     }
-
     public bool TryPopATire() {
         foreach(WheelControl wheel in vehicleControl.wheels) {
             if(wheel.isFlat) continue;

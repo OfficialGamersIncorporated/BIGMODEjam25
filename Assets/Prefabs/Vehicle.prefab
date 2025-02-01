@@ -738,14 +738,13 @@ MonoBehaviour:
   steeringRangeAtMaxSpeed: 10
   centreOfGravityOffset: -0.75
   canBrakeAsReverse: 1
-  repeatBrakeForReverse: 1
+  repeatBrakeForReverse: 0
   SteeringInput: 0
   ThrottleInput: 0
   BrakeInput: 0
   UrgencyInput: 0
   wheels: []
   centerOfGravity: {fileID: 6843729342171220047}
-  smoothedThrottle: 0
 --- !u!114 &1844420851487416982
 MonoBehaviour:
   m_ObjectHideFlags: 0
