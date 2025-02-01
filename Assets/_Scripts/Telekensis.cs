@@ -65,7 +65,7 @@ public class Telekensis : MonoBehaviour {
         if(!Physics.Raycast(ray, out RaycastHit hitData, raycastDistance, objectLayer)) return null;
 
         if(hitData.transform.gameObject == null) return null;
-        GameObject hitObj = hitData.transform.gameObject;
+        GameObject hitObj = hitData.collider.transform.gameObject;
 
         if(Vector3.Distance(hitObj.transform.position, PlayerFocusControl.Instance.GetCurrentPlayer().transform.position) > maxRange)
             return null;
@@ -88,7 +88,7 @@ public class Telekensis : MonoBehaviour {
 
         foreach(RaycastHit hitData in hitDataList) {
             if(hitData.transform.gameObject == null) continue;
-            GameObject hitObj = hitData.transform.gameObject;
+            GameObject hitObj = hitData.collider.transform.gameObject;
 
             if(Vector3.Distance(hitObj.transform.position, PlayerFocusControl.Instance.GetCurrentPlayer().transform.position) > maxRange)
                 continue;

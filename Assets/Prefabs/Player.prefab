@@ -389,12 +389,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: 6
       addedObject: {fileID: 7744211445488557475}
-    - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3798151590118563484}
-    - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4644370750987579967}
     - targetCorrespondingSourceObject: {fileID: 7376880685147923944, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2649007469529682405}
@@ -480,7 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectLayer:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 2305
   heldPart: {fileID: 0}
   teleTarget: {fileID: 2636266094309789812}
   <TeleForce>k__BackingField: 500
@@ -500,41 +494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleAnimator: {fileID: 2649007469529682405}
---- !u!169 &3798151590118563484
-AudioLowPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3953551970271725981}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_LowpassResonanceQ: 1
-  lowpassLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.099590726
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!165 &4644370750987579967
-AudioHighPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3953551970271725981}
-  m_Enabled: 1
-  m_CutoffFrequency: 3000
-  m_HighpassResonanceQ: 1
 --- !u!1 &6384781533069912969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2028027972258744203, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
