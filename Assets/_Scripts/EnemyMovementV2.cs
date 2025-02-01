@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EnemyVehicleControl : MonoBehaviour
+public class EnemyMovementV2 : MonoBehaviour
 {
     Vehicle vehicleControl;
 
@@ -16,14 +16,21 @@ public class EnemyVehicleControl : MonoBehaviour
     Rigidbody targetRB;
     Vector3 predictTarget;
 
+    [Header("Move Stats")]
+    [SerializeField] float steerSpeed = 10;
+    [SerializeField] float throttleSpeed = 10;
+
 
     [Header("Targeting")]
+    [SerializeField] float range = 500;
+    bool inRange;
     [SerializeField] float distanceToTarget;
     [SerializeField] Vector3 localTargetVector;
-    [SerializeField] float range = 500;
-    [SerializeField] bool inRange;
     [SerializeField] Vector3 targetDirection;
     [SerializeField] float dotProduct;
+
+
+    [Header("Directions")]
     [SerializeField] bool front;
     [SerializeField] bool side;
     [SerializeField] bool back;
@@ -31,17 +38,21 @@ public class EnemyVehicleControl : MonoBehaviour
     [SerializeField] bool right;
 
 
+    float adjustedDot;
+    int coin;
+
     float currentThrottle;
     float currentSteer;
     float currentBrake;
     bool waitImBraking;
 
-    /* Exposed in Vehicle.cs
-    SmoothedThrottle
-    SmoothedSteer
-    SmoothedBrake
-    LastIsBraking
-    */
+    float steeringGoal;
+    float throttleGoal;
+
+    
+    enum MovementState { None, Front, Back, Left, Right };
+
+    MovementState movementState = MovementState.None;
 
 
     void Start()
@@ -81,16 +92,70 @@ public class EnemyVehicleControl : MonoBehaviour
             front = dotProduct > 0.707;
             side = dotProduct < 0.707 && dotProduct > -0.707;
             back = dotProduct < -0.707;
-            
+
             left = localTargetVector.x < 0 && side;
             right = localTargetVector.x > 0 && side;
 
             //
 
-            moveValue.y = dotProduct;
 
-            vehicleControl.ThrottleInput = 1;
 
+            adjustedDot = dotProduct - 1;
+
+            if (front)
+            {
+                if (movementState != MovementState.Front)
+                {
+                    EnterFront();
+                }
+                
+            }
+            else if (back)
+            {
+                if (movementState != MovementState.Back)
+                {
+                    EnterBack();
+                }
+            }
+
+            if (left)
+            {
+                if (movementState != MovementState.Left)
+                {
+                    EnterLeft();
+                }
+            }
+            else if (right)
+            {
+                if (movementState != MovementState.Right)
+                {
+                    EnterRight();
+                }
+            }
+
+
+            //
+
+            if (currentThrottle < throttleGoal)
+            {
+                moveValue.y += throttleSpeed * Time.deltaTime;
+            }
+            else if (currentThrottle > throttleGoal)
+            {
+                moveValue.y -= throttleSpeed * Time.deltaTime;
+            }
+
+            if (currentSteer > steeringGoal)
+            {
+                moveValue.x -= steerSpeed * Time.deltaTime;
+            }
+            else if (currentSteer < steeringGoal)
+            {
+                moveValue.x += steerSpeed * Time.deltaTime;
+            }
+
+
+            /*
             if (left)
             {
                 moveValue.x = Mathf.Clamp((-1 - dotProduct), -1, 1);
@@ -111,8 +176,9 @@ public class EnemyVehicleControl : MonoBehaviour
                 vehicleControl.BrakeInput = 1;
                 //moveValue.y = -1;
             }
+            */
 
-
+            vehicleControl.ThrottleInput = moveValue.y;
             vehicleControl.SteeringInput = moveValue.x;
             vehicleControl.UrgencyInput = sprintValue;
             vehicleControl.canBrakeAsReverse = true;
@@ -130,15 +196,6 @@ public class EnemyVehicleControl : MonoBehaviour
 
     }
 
-    //public IEnumerator TurnAround()
-    //{
-    //    while (true)
-    //    {
-
-    //        yield return null;
-    //    }
-    //}
-
     void GetVehicleControlStats()
     {
         currentThrottle = vehicleControl.SmoothedThrottle;
@@ -148,6 +205,39 @@ public class EnemyVehicleControl : MonoBehaviour
     }
 
 
+    void EnterFront()
+    {
+        movementState = MovementState.Front;
+        steeringGoal = adjustedDot;
+        throttleGoal = 1;
+    }
+    void EnterBack()
+    {
+        movementState = MovementState.Back;
+        throttleGoal = -1;
+        coin = Random.Range(0, 2);
+        if (coin == 1)
+        {
+            steeringGoal = 1;
+        }
+        else if (coin == 2)
+        {
+            steeringGoal = -1;
+        }
+    }
+    void EnterLeft()
+    {
+        movementState = MovementState.Left;
+        steeringGoal = -1;
+        throttleGoal = 1;
+        adjustedDot = -1 * adjustedDot;
+    }
+    void EnterRight()
+    {
+        movementState = MovementState.Right;
+        steeringGoal = 1;
+        throttleGoal = 1;
+    }
 
     private void OnDrawGizmos()
     {
