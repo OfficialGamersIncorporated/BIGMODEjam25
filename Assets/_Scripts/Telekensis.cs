@@ -15,7 +15,7 @@ public class Telekensis : MonoBehaviour {
     [SerializeField] float TeleDrag = 0.5f;
     [SerializeField] float maxRange = 15;
     Rigidbody partRB;
-    bool holdingPart = false;
+    //bool holdingPart = false;
     GameObject lastHovered;
 
     void Start() {
@@ -25,7 +25,7 @@ public class Telekensis : MonoBehaviour {
     }
 
     void Update() {
-        if(!holdingPart) {
+        if(!heldPart) {
             GameObject hovered = GetHovered();
             if (hovered != lastHovered) {
                 if(lastHovered)
@@ -35,7 +35,7 @@ public class Telekensis : MonoBehaviour {
                     hovered.layer = LayerMask.NameToLayer("TelekinesisHover");
             }
         }
-        teleTarget.matchPlayerHeight = holdingPart;
+        teleTarget.matchPlayerHeight = heldPart;
         if(teleknesisAction.WasPressedThisFrame()) {
             SelectObject();
         }
@@ -121,7 +121,7 @@ public class Telekensis : MonoBehaviour {
         partRB = hitObj.GetComponent<Rigidbody>();
         if(!partRB) return;
 
-        holdingPart = true;
+        //holdingPart = true;
         heldPart = hitObj;
         partRB.useGravity = false;
         partRB.isKinematic = false;
@@ -137,11 +137,11 @@ public class Telekensis : MonoBehaviour {
 
         heldPart = null;
         partRB = null;
-        holdingPart = false;
+        //holdingPart = false;
     }
 
     private void OnDrawGizmos() {
-        if(holdingPart) {
+        if(heldPart /*holdingPart*/) {
             Gizmos.color = Color.white;
             Gizmos.DrawLine(heldPart.transform.position, teleTarget.transform.position);
 
