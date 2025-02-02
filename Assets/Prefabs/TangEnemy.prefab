@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: maxSteerRateOfChange
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: centreOfGravityOffset
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485832932051221731, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: steeringRangeAtMaxSpeed
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2949377446850865445, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: wheelModel
@@ -204,12 +204,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 7367360725885979576}
-    - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-      insertIndex: 3
       addedObject: {fileID: -7680209239170865849}
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-      insertIndex: 4
+      insertIndex: 3
       addedObject: {fileID: 2814250224140255893}
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: -1
@@ -233,30 +230,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
   m_PrefabInstance: {fileID: 7023800137781733643}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7367360725885979576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376438855864192148}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b281f4393ddb5438495ce7fbbe64d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveValue: {x: 0, y: 0}
-  distanceToTarget: 0
-  localTargetVector: {x: 0, y: 0, z: 0}
-  range: 500
-  inRange: 0
-  targetDirection: {x: 0, y: 0, z: 0}
-  dotProduct: 0
-  front: 0
-  side: 0
-  back: 0
-  left: 0
-  right: 0
 --- !u!114 &-7680209239170865849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,16 +258,9 @@ MonoBehaviour:
   moveValue: {x: 0, y: 0}
   steerSpeed: 10
   throttleSpeed: 10
-  range: 500
-  distanceToTarget: 0
-  localTargetVector: {x: 0, y: 0, z: 0}
-  targetDirection: {x: 0, y: 0, z: 0}
-  dotProduct: 0
-  front: 0
-  side: 0
-  back: 0
-  left: 0
-  right: 0
+  alwaysHasTarget: 1
+  targetRange: 500
+  closeRange: 5
 --- !u!165 &9048662458048323007
 AudioHighPassFilter:
   m_ObjectHideFlags: 0

@@ -22,20 +22,25 @@ public class EnemyMovementV2 : MonoBehaviour
 
 
     [Header("Targeting")]
-    [SerializeField] float range = 500;
+    [SerializeField] bool alwaysHasTarget = true;
+    [SerializeField] float targetRange = 500;
+    [SerializeField] float closeRange = 5;
+
+    bool predict = true;
+    float distanceToTarget;
     bool inRange;
-    [SerializeField] float distanceToTarget;
-    [SerializeField] Vector3 localTargetVector;
-    [SerializeField] Vector3 targetDirection;
-    [SerializeField] float dotProduct;
+    float distanceToPredictTarget;
+    Vector3 localTargetVector;
+    Vector3 targetDirection;
+    float dotProduct;
 
 
-    [Header("Directions")]
-    [SerializeField] bool front;
-    [SerializeField] bool side;
-    [SerializeField] bool back;
-    [SerializeField] bool left;
-    [SerializeField] bool right;
+    //Direction
+    bool front;
+    bool side;
+    bool back;
+    bool left;
+    bool right;
 
 
     float adjustedDot;
@@ -75,18 +80,29 @@ public class EnemyMovementV2 : MonoBehaviour
     {
         GetVehicleControlStats();
 
-        if (hasTarget)
+        if (hasTarget && targetGo)
         {
             predictTarget = (targetRB.linearVelocity / 2) + targetGo.transform.position;
 
             vehicleControl.UrgencyInput = true;
 
-            distanceToTarget = Vector3.Distance(transform.position, predictTarget);
+            distanceToTarget = Vector3.Distance(transform.position, targetGo.transform.position);
+            distanceToPredictTarget = Vector3.Distance(transform.position, predictTarget);
             localTargetVector = transform.InverseTransformPoint(predictTarget).normalized;
 
-            inRange = (distanceToTarget < range);
+            inRange = (distanceToPredictTarget < targetRange);
 
-            targetDirection = (predictTarget - transform.position).normalized;
+            predict = (distanceToTarget > closeRange);
+
+            if (predict)
+            {
+                targetDirection = (predictTarget - transform.position).normalized;
+            }
+            else
+            {
+                targetDirection = (targetGo.transform.position - transform.position).normalized;
+            }
+            
 
             dotProduct = Vector3.Dot(transform.forward, targetDirection);
             front = dotProduct > 0.707;
@@ -98,9 +114,9 @@ public class EnemyMovementV2 : MonoBehaviour
 
             //
 
-
-
             adjustedDot = dotProduct - 1;
+
+
 
             if (front)
             {
@@ -108,7 +124,13 @@ public class EnemyMovementV2 : MonoBehaviour
                 {
                     EnterFront();
                 }
-                
+
+                if (localTargetVector.x < 0)
+                {
+                    adjustedDot = Mathf.Abs(adjustedDot) * -1;
+                }
+
+                steeringGoal = adjustedDot * 2;
             }
             else if (back)
             {
@@ -133,54 +155,11 @@ public class EnemyMovementV2 : MonoBehaviour
                 }
             }
 
-
-            //
-
-            if (currentThrottle < throttleGoal)
-            {
-                moveValue.y += throttleSpeed * Time.deltaTime;
-                moveValue.x = Mathf.Clamp(moveValue.x, -1, 1);
-            }
-            else if (currentThrottle > throttleGoal)
-            {
-                moveValue.y -= throttleSpeed * Time.deltaTime;
-            }
-
-            if (currentSteer > steeringGoal)
-            {
-                moveValue.x -= steerSpeed * Time.deltaTime;
-            }
-            else if (currentSteer < steeringGoal)
-            {
-                moveValue.x += steerSpeed * Time.deltaTime;
-            }
+            moveValue.x = Mathf.MoveTowards(moveValue.x, steeringGoal, steerSpeed * Time.deltaTime);
+            moveValue.y = Mathf.MoveTowards(moveValue.y, throttleGoal, throttleSpeed * Time.deltaTime);
 
             moveValue.x = Mathf.Clamp(moveValue.x, -1, 1);
             moveValue.y = Mathf.Clamp(moveValue.y, -1, 1);
-
-
-            /*
-            if (left)
-            {
-                moveValue.x = Mathf.Clamp((-1 - dotProduct), -1, 1);
-            }
-            if (right)
-            {
-                moveValue.x = Mathf.Clamp((1 - dotProduct), -1, 1);
-            }
-            if (front)
-            {
-                vehicleControl.ThrottleInput = 1;
-                vehicleControl.BrakeInput = 0;
-                //moveValue.y = 1;
-            }
-            if (back)
-            {
-                vehicleControl.ThrottleInput = 1;
-                vehicleControl.BrakeInput = 1;
-                //moveValue.y = -1;
-            }
-            */
 
             vehicleControl.ThrottleInput = moveValue.y;
             vehicleControl.SteeringInput = moveValue.x;
@@ -189,6 +168,10 @@ public class EnemyMovementV2 : MonoBehaviour
         }
         else
         {
+            // if (!alwaysHaveTarget)
+            // {
+            //      
+
             moveValue = Vector2.zero;
 
             vehicleControl.SteeringInput = 0;
@@ -212,7 +195,6 @@ public class EnemyMovementV2 : MonoBehaviour
     void EnterFront()
     {
         movementState = MovementState.Front;
-        steeringGoal = adjustedDot;
         throttleGoal = 1;
     }
     void EnterBack()
@@ -233,14 +215,13 @@ public class EnemyMovementV2 : MonoBehaviour
     {
         movementState = MovementState.Left;
         steeringGoal = -1;
-        throttleGoal = 1;
-        adjustedDot = -1 * adjustedDot;
+        throttleGoal = 0.50f;
     }
     void EnterRight()
     {
         movementState = MovementState.Right;
         steeringGoal = 1;
-        throttleGoal = 1;
+        throttleGoal = 0.50f;
     }
 
     private void OnDrawGizmos()
