@@ -135,6 +135,9 @@ public class Telekensis : MonoBehaviour
         partRB = hitObj.GetComponent<Rigidbody>();
         if (!partRB) return;
 
+        AudioSource pickupSound = hitObj.GetComponent<AudioSource>();
+        if(pickupSound) pickupSound.Play();
+
         //holdingPart = true;
         heldPart = hitObj;
         partRB.useGravity = false;

@@ -6,6 +6,8 @@ public class VehicleHealth : MonoBehaviour {
 
     Vehicle vehicleControl;
     public Animator vehicleAnimator;
+    public AudioSource TirePopSound;
+    public AudioSource RepairSound;
 
     void Start() {
         vehicleControl = GetComponent<Vehicle>();
@@ -19,7 +21,10 @@ public class VehicleHealth : MonoBehaviour {
     }
     public bool TryHeal() {
         bool worked = TryFixATire();
-        if (worked) vehicleAnimator.SetTrigger("Heal");
+        if(worked) {
+            vehicleAnimator.SetTrigger("Heal");
+            if(RepairSound) RepairSound.Play();
+        }
         return worked;
     }
     public bool TryPopATire() {
@@ -27,6 +32,7 @@ public class VehicleHealth : MonoBehaviour {
             if(wheel.isFlat) continue;
 
             wheel.isFlat = true;
+            if(TirePopSound) TirePopSound.Play();
             return true;
         }
         return false;
