@@ -118,4 +118,22 @@ public class Vehicle : MonoBehaviour {
 
         LastIsBraking = BrakeInput > 0.1f;
     }
+
+
+    public void UpgradeMotorTorque(float motorTorqueParam)
+    {
+        motorTorque = motorTorqueParam;
+    }
+    public void UpgradeMaxSpeed(float maxSpeedParam)
+    {
+        maxSpeed = maxSpeedParam;
+    }
+    public void UpgradeSteerRange(float steerRangeParam)
+    {
+        steeringRange = steerRangeParam;
+    }
+    public void UpgradeSteerRangeAtMaxSpeed(float steerRangeAtMaxSpeedParam)
+    {
+        steeringRangeAtMaxSpeed = steerRangeAtMaxSpeedParam;
+    }
 }

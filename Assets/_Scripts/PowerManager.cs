@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PowerManager : MonoBehaviour
 {
-    [SerializeField] Telekensis telekensis;
+
+    
 
     void Start()
     {
@@ -14,4 +15,7 @@ public class PowerManager : MonoBehaviour
     {
 
     }
+
+
+    
 }

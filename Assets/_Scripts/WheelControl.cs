@@ -12,6 +12,8 @@ public class WheelControl : MonoBehaviour {
     public bool steerable;
     public bool motorized;
     private bool _isFlat;
+
+    public float stiffnessMult = 1;
     public bool isFlat {
         get {
             return _isFlat;
@@ -29,13 +31,13 @@ public class WheelControl : MonoBehaviour {
 
             if(_isFlat) {
                 WheelCollider.radius = flatRadius;
-                forwardCurve.stiffness = flatStiffness;
-                sidewaysCurve.stiffness = flatStiffness;
+                forwardCurve.stiffness = flatStiffness * stiffnessMult;
+                sidewaysCurve.stiffness = flatStiffness * stiffnessMult;
                 if(wheelModel && mesh) mesh.material.SetFloat("_Influence", 1);
             } else {
                 WheelCollider.radius = startRadius;
-                forwardCurve.stiffness = 1;
-                sidewaysCurve.stiffness = 1;
+                forwardCurve.stiffness = 1 * stiffnessMult;
+                sidewaysCurve.stiffness = 1 * stiffnessMult;
                 if(wheelModel && mesh) mesh.material.SetFloat("_Influence", 0);
             }
 
@@ -65,5 +67,14 @@ public class WheelControl : MonoBehaviour {
             wheelModel.transform.position = position;
             wheelModel.transform.rotation = rotation;
         }
+    }
+
+    public void UpgradeStiffnessMult(float stiffnessMultParam)
+    {
+        stiffnessMult = stiffnessMultParam;
+    }
+    public void MakeMotorized()
+    {
+        motorized = true;
     }
 }

@@ -491,6 +491,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &361538570 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5233659571112276452, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+  m_PrefabInstance: {fileID: 1378396045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5e4dd6b59def64cbad718155e820d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &361538576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7404269263293485281, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+  m_PrefabInstance: {fileID: 1378396045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a9861841a2cef47b3796d580c82ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &604612927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2174404723770685473, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+  m_PrefabInstance: {fileID: 1378396045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &752453680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6739989948288475478, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
@@ -508,19 +535,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5609f6adcb2e2b24a9e8bccdae64f7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &752453684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752453680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7419017980f9d546bc29ddfb2594c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  telekensis: {fileID: 0}
+  vehicle: {fileID: 361538576}
+  telekensis: {fileID: 361538570}
+  wheels:
+  - {fileID: 919359367}
+  - {fileID: 1804063197}
+  - {fileID: 604612927}
+  - {fileID: 1269727299}
 --- !u!1001 &893671069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -582,6 +603,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2487878129730142135, guid: 38e77812db6e5104a8c251fa7de65a09, type: 3}
   m_PrefabInstance: {fileID: 893671069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &919359367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1594821203610613451, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+  m_PrefabInstance: {fileID: 1378396045}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1032376287
 PrefabInstance:
@@ -909,6 +935,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2487878129730142135, guid: 38e77812db6e5104a8c251fa7de65a09, type: 3}
   m_PrefabInstance: {fileID: 1242559023}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1269727299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4986325999219327160, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+  m_PrefabInstance: {fileID: 1378396045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1279931213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1089,9 +1120,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6739989948288475478, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 752453684}
     - targetCorrespondingSourceObject: {fileID: 6739989948288475478, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 752453683}
@@ -1410,6 +1438,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2487878129730142135, guid: 38e77812db6e5104a8c251fa7de65a09, type: 3}
   m_PrefabInstance: {fileID: 1669869618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1804063197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3836022961138467615, guid: de56cf06650653d4183d9117de7d2ab2, type: 3}
+  m_PrefabInstance: {fileID: 1378396045}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1945510530
 GameObject:

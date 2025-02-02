@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BonusUpgrade : MonoBehaviour
 {
+    UpgradeManager upgradeManager;
     [SerializeField] GameObject mcGuffin;
     [SerializeField] float waitTime = 1;
     float tempWaitTimer;
@@ -16,6 +17,11 @@ public class BonusUpgrade : MonoBehaviour
         if (mcGuffin == null)
         {
             Debug.LogError("NO MCGUFFIN WTF");
+        }
+        upgradeManager = UpgradeManager.Instance;
+        if (upgradeManager == null)
+        {
+            Debug.LogError("NO UPGRADE MANAGER OH NO");
         }
     }
 
