@@ -63,9 +63,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3012177348565361933, guid: 38e77812db6e5104a8c251fa7de65a09, type: 3}
       insertIndex: 3
       addedObject: {fileID: 2053040509259632530}
-    - targetCorrespondingSourceObject: {fileID: 3012177348565361933, guid: 38e77812db6e5104a8c251fa7de65a09, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 8330544330337006493}
   m_SourcePrefab: {fileID: 100100000, guid: 38e77812db6e5104a8c251fa7de65a09, type: 3}
 --- !u!1 &8856134148357478030 stripped
 GameObject:
@@ -86,18 +83,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitCooldown: 0.25
   canHit: 1
-  minVelocity: 1
+  minVelocity: 0
+  pushOtherForce: 1000
+  pushSelfForce: 1000
+  yUpIncrease: 1
+  stationaryDamage: 1
   DestroyOnDamage: 1
---- !u!114 &8330544330337006493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8856134148357478030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 158e3d3152bcb5a47a167141f855632b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionForce: 7500

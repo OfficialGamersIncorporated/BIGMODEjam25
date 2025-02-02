@@ -45,7 +45,7 @@ public class Telekensis : MonoBehaviour
         {
             SelectObject();
         }
-        if (teleknesisAction.IsPressed() && heldPart != null && partRB != null)
+        if (teleknesisAction.IsPressed() && heldPart != null && partRB != null && !partRB.isKinematic)
         {
 
             //heldPart.transform.position = Vector3.MoveTowards(heldPart.transform.position, teleTarget.transform.position, flySpeed * Time.deltaTime);
