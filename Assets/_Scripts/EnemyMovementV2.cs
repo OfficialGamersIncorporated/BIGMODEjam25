@@ -9,8 +9,6 @@ public class EnemyMovementV2 : MonoBehaviour
     public Vector2 moveValue = Vector2.zero;
     bool sprintValue;
 
-    bool hasTarget;
-
     PlayerFocusControl playerFocusControl;
     GameObject targetGo;
     Rigidbody targetRB;
@@ -22,13 +20,13 @@ public class EnemyMovementV2 : MonoBehaviour
 
 
     [Header("Targeting")]
-    [SerializeField] bool alwaysHasTarget = true;
-    [SerializeField] float targetRange = 500;
+    [SerializeField] bool alwaysHasTarget = false;
+    [SerializeField] float targetRange = 100;
     [SerializeField] float closeRange = 5;
 
     bool predict = true;
     float distanceToTarget;
-    bool inRange;
+    bool inRange = false;
     float distanceToPredictTarget;
     Vector3 localTargetVector;
     Vector3 targetDirection;
@@ -46,10 +44,10 @@ public class EnemyMovementV2 : MonoBehaviour
     float adjustedDot;
     int coin;
 
-    float currentThrottle;
-    float currentSteer;
-    float currentBrake;
-    bool waitImBraking;
+    //float currentThrottle;
+    //float currentSteer;
+    //float currentBrake;
+    //bool waitImBraking;
 
     float steeringGoal;
     float throttleGoal;
@@ -64,23 +62,22 @@ public class EnemyMovementV2 : MonoBehaviour
     {
         vehicleControl = GetComponent<Vehicle>();
 
-        GetVehicleControlStats();
+        //GetVehicleControlStats();
 
         playerFocusControl = PlayerFocusControl.Instance;
         if (playerFocusControl != null)
         {
             targetGo = playerFocusControl.GetCurrentPlayer();
             targetRB = targetGo.GetComponent<Rigidbody>();
-            hasTarget = true;
         }
 
     }
 
     void Update()
     {
-        GetVehicleControlStats();
+        //GetVehicleControlStats();
 
-        if (hasTarget && targetGo)
+        if (targetGo)
         {
             predictTarget = (targetRB.linearVelocity / 2) + targetGo.transform.position;
 
@@ -90,7 +87,7 @@ public class EnemyMovementV2 : MonoBehaviour
             distanceToPredictTarget = Vector3.Distance(transform.position, predictTarget);
             localTargetVector = transform.InverseTransformPoint(predictTarget).normalized;
 
-            inRange = (distanceToPredictTarget < targetRange);
+            inRange = (distanceToTarget < targetRange);
 
             predict = (distanceToTarget > closeRange);
 
@@ -116,62 +113,71 @@ public class EnemyMovementV2 : MonoBehaviour
 
             adjustedDot = dotProduct - 1;
 
-
-
-            if (front)
+            if (inRange || alwaysHasTarget)
             {
-                if (movementState != MovementState.Front)
+                if (front)
                 {
-                    EnterFront();
+                    if (movementState != MovementState.Front)
+                    {
+                        EnterFront();
+                    }
+
+                    if (localTargetVector.x < 0)
+                    {
+                        adjustedDot = Mathf.Abs(adjustedDot) * -1;
+                    }
+
+                    steeringGoal = adjustedDot * 2;
+                }
+                else if (back)
+                {
+                    if (movementState != MovementState.Back)
+                    {
+                        EnterBack();
+                    }
                 }
 
-                if (localTargetVector.x < 0)
+                if (left)
                 {
-                    adjustedDot = Mathf.Abs(adjustedDot) * -1;
+                    if (movementState != MovementState.Left)
+                    {
+                        EnterLeft();
+                    }
+                }
+                else if (right)
+                {
+                    if (movementState != MovementState.Right)
+                    {
+                        EnterRight();
+                    }
                 }
 
-                steeringGoal = adjustedDot * 2;
+                moveValue.x = Mathf.MoveTowards(moveValue.x, steeringGoal, steerSpeed * Time.deltaTime);
+                moveValue.y = Mathf.MoveTowards(moveValue.y, throttleGoal, throttleSpeed * Time.deltaTime);
+
+                moveValue.x = Mathf.Clamp(moveValue.x, -1, 1);
+                moveValue.y = Mathf.Clamp(moveValue.y, -1, 1);
+
+                vehicleControl.ThrottleInput = moveValue.y;
+                vehicleControl.SteeringInput = moveValue.x;
+                vehicleControl.UrgencyInput = sprintValue;
+                vehicleControl.canBrakeAsReverse = true;
             }
-            else if (back)
+            else
             {
-                if (movementState != MovementState.Back)
-                {
-                    EnterBack();
-                }
+                moveValue = Vector2.zero;
+
+                vehicleControl.SteeringInput = 0;
+                vehicleControl.ThrottleInput = 0;
+                vehicleControl.BrakeInput = 1;
+                vehicleControl.UrgencyInput = false;
+                vehicleControl.canBrakeAsReverse = false;
             }
 
-            if (left)
-            {
-                if (movementState != MovementState.Left)
-                {
-                    EnterLeft();
-                }
-            }
-            else if (right)
-            {
-                if (movementState != MovementState.Right)
-                {
-                    EnterRight();
-                }
-            }
-
-            moveValue.x = Mathf.MoveTowards(moveValue.x, steeringGoal, steerSpeed * Time.deltaTime);
-            moveValue.y = Mathf.MoveTowards(moveValue.y, throttleGoal, throttleSpeed * Time.deltaTime);
-
-            moveValue.x = Mathf.Clamp(moveValue.x, -1, 1);
-            moveValue.y = Mathf.Clamp(moveValue.y, -1, 1);
-
-            vehicleControl.ThrottleInput = moveValue.y;
-            vehicleControl.SteeringInput = moveValue.x;
-            vehicleControl.UrgencyInput = sprintValue;
-            vehicleControl.canBrakeAsReverse = true;
+            
         }
         else
         {
-            // if (!alwaysHaveTarget)
-            // {
-            //      
-
             moveValue = Vector2.zero;
 
             vehicleControl.SteeringInput = 0;
@@ -179,17 +185,18 @@ public class EnemyMovementV2 : MonoBehaviour
             vehicleControl.BrakeInput = 1;
             vehicleControl.UrgencyInput = false;
             vehicleControl.canBrakeAsReverse = false;
+
         }
 
     }
 
-    void GetVehicleControlStats()
-    {
-        currentThrottle = vehicleControl.SmoothedThrottle;
-        currentSteer = vehicleControl.SmoothedSteer;
-        currentBrake = vehicleControl.SmoothedBrake;
-        waitImBraking = vehicleControl.LastIsBraking;
-    }
+    //void GetVehicleControlStats()
+    //{
+    //    currentThrottle = vehicleControl.SmoothedThrottle;
+    //    currentSteer = vehicleControl.SmoothedSteer;
+    //    currentBrake = vehicleControl.SmoothedBrake;
+    //    waitImBraking = vehicleControl.LastIsBraking;
+    //}
 
 
     void EnterFront()
@@ -226,7 +233,7 @@ public class EnemyMovementV2 : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (hasTarget)
+        if (targetGo)
         {
             Gizmos.color = Color.white;
             Gizmos.DrawLine(transform.position, targetGo.transform.position);
@@ -236,6 +243,10 @@ public class EnemyMovementV2 : MonoBehaviour
 
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(predictTarget, 2);
+
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, targetRange / 2);
         }
     }
 }

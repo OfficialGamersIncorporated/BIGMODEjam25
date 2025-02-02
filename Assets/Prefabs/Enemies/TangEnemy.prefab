@@ -1415,6 +1415,10 @@ MonoBehaviour:
   hitCooldown: 1
   canHit: 1
   minVelocity: 3.5
+  pushOtherForce: 3000
+  pushSelfForce: 1000
+  yUpIncrease: 0.5
+  stationaryDamage: 0
   DestroyOnDamage: 0
 --- !u!114 &2814250224140255893
 MonoBehaviour:
@@ -1431,8 +1435,8 @@ MonoBehaviour:
   moveValue: {x: 0, y: 0}
   steerSpeed: 10
   throttleSpeed: 10
-  alwaysHasTarget: 1
-  targetRange: 500
+  alwaysHasTarget: 0
+  targetRange: 200
   closeRange: 5
 --- !u!165 &9048662458048323007
 AudioHighPassFilter:

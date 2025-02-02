@@ -18,6 +18,10 @@ public class DamageOnContact : MonoBehaviour
 
     Rigidbody rb;
 
+    Vector3 targetDirection = Vector3.forward;
+    Vector3 directionToSelf = Vector3.forward;
+    GameObject tempGo;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -48,6 +52,7 @@ public class DamageOnContact : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        tempGo = collision.gameObject;
         if (!canHit)
         {
             return;
@@ -59,14 +64,14 @@ public class DamageOnContact : MonoBehaviour
             // Force on hit
             if (collision.gameObject.GetComponent<Rigidbody>() != null)
             {
-                Vector3 targetDirection = collision.transform.position - transform.position;
+                targetDirection = collision.transform.position - transform.position;
                 targetDirection.y += yUpIncrease;
 
                 Rigidbody colRb = collision.gameObject.GetComponent<Rigidbody>();
                 colRb.AddRelativeForce(targetDirection * pushOtherForce, ForceMode.Impulse);
 
 
-                Vector3 directionToSelf = transform.position - collision.transform.position;
+                directionToSelf = transform.position - collision.transform.position;
                 directionToSelf.y += yUpIncrease;
                 rb.AddRelativeForce(directionToSelf * pushSelfForce, ForceMode.Impulse);
 
@@ -81,5 +86,18 @@ public class DamageOnContact : MonoBehaviour
             if (DestroyOnDamage) Destroy(gameObject);
 
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (tempGo != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + targetDirection * pushOtherForce);
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(tempGo.transform.position, tempGo.transform.position + directionToSelf * pushSelfForce);
+        }
+        
     }
 }
