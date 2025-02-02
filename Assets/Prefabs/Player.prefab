@@ -386,12 +386,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 1845681628797520338}
-    - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-      insertIndex: 3
       addedObject: {fileID: 5233659571112276452}
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-      insertIndex: 6
+      insertIndex: 5
       addedObject: {fileID: 7744211445488557475}
     - targetCorrespondingSourceObject: {fileID: 7376880685147923944, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: -1
@@ -434,33 +431,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
   m_PrefabInstance: {fileID: 4953480528617729026}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1845681628797520338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3953551970271725981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7419017980f9d546bc29ddfb2594c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointerPos: {x: 0, y: 0, z: 0}
-  raycastDistance: 1000
-  ignoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 1408
-  blastCollider: {fileID: 847058626648809991, guid: b1222b60a3c6885448c7d15b4a8e6187, type: 3}
-  flySpeed: 50
-  blastForce: 5
-  blastCooldown: 0.5
-  wallCollider: {fileID: 8531924545030236827, guid: 596817497c115ec47b8f1a87ca9e641b, type: 3}
-  riseSpeed: 5
-  wallForce: 5
-  wallCooldown: 0.5
-  wallHeight: 5
-  wallLifeSpan: 1
 --- !u!114 &5233659571112276452
 MonoBehaviour:
   m_ObjectHideFlags: 0
