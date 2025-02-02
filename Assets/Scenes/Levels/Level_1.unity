@@ -586,6 +586,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23cca28a1769f849b3c8bbd3474bfa9, type: 3}
+--- !u!1 &828077261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1728377792830707487, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+  m_PrefabInstance: {fileID: 48585990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000401608
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +689,34 @@ PrefabInstance:
       propertyPath: upgradePrefab
       value: 
       objectReference: {fileID: 1418019454708129904, guid: f1057a922aefd854b95c438387475c88, type: 3}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 828077261}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3980700469326533368, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1372,6 +1405,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1305506765}
+  - {fileID: 48585990}
   - {fileID: 203844589}
   - {fileID: 1370388729}
   - {fileID: 1389407633}
@@ -1380,7 +1414,6 @@ SceneRoots:
   - {fileID: 395117010}
   - {fileID: 1729710133}
   - {fileID: 1000401611}
-  - {fileID: 48585990}
   - {fileID: 1594383583}
   - {fileID: 2052758688}
   - {fileID: 664673353}

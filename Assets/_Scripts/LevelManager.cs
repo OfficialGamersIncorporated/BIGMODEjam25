@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class LevelManager : MonoBehaviour
 
     int numberOfEnemies;
     public bool UpgradeHasSpawned = false;
+
+    public UnityEvent AllEnemiesDefeated = new UnityEvent();
 
 
     private void Awake()

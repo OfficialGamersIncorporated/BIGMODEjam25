@@ -1239,6 +1239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToriGate
       objectReference: {fileID: 0}
+    - target: {fileID: 1728377792830707487, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5785940368627370500, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
       propertyPath: TargetScene
       value: 
@@ -1248,6 +1252,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+--- !u!1 &1394996336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1728377792830707487, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+  m_PrefabInstance: {fileID: 1394996335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1506896581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1773,6 +1782,34 @@ PrefabInstance:
       propertyPath: upgradePrefab
       value: 
       objectReference: {fileID: 1418019454708129904, guid: 4f58df444f93a9b46aa2d994875135f9, type: 3}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1394996336}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
+      propertyPath: AllEnemiesDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3980700469326533368, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1941,12 +1978,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2013842788}
+  - {fileID: 1394996335}
   - {fileID: 203844589}
   - {fileID: 1084292501}
   - {fileID: 37718150}
   - {fileID: 500806006}
   - {fileID: 1267624093}
-  - {fileID: 1394996335}
   - {fileID: 1859999813}
   - {fileID: 568126888}
   - {fileID: 1759268479}

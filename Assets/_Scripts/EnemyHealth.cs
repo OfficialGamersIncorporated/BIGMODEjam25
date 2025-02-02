@@ -37,6 +37,7 @@ public class EnemyHealth : MonoBehaviour
         {
             GameObject spawnedUpgrade = Instantiate(levelManager.upgradePrefab, new Vector3(upgradeSpawnPoint.transform.position.x, upgradeSpawnPoint.transform.position.y + 1, upgradeSpawnPoint.transform.position.z), Quaternion.identity);
             levelManager.UpgradeHasSpawned = true;
+            levelManager.AllEnemiesDefeated.Invoke();
         }
 
         levelManager.EnemyCarsList.Remove(gameObject);
