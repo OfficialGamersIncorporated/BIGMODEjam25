@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbitPoint: {fileID: 0}
   yOffset: 0
-  orbitSpeed: 3
+  orbitSpeed: 4
   orbitDampening: 90
   minYRotation: -30
   maxYRotation: 40

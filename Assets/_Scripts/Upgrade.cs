@@ -13,6 +13,8 @@ public class Upgrade : MonoBehaviour
     public float steerRangeAtMaxSpeed;
     public float teleForce;
     public float teleMaxRange;
+    [Multiline]
+    public string DisplayText;
     
     [Header("Anim")]
     [SerializeField] float animationSpeed = 1;
