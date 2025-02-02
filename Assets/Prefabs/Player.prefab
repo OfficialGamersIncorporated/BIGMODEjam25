@@ -370,6 +370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle
       objectReference: {fileID: 0}
+    - target: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -392,9 +396,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7376880685147923944, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2649007469529682405}
-    - targetCorrespondingSourceObject: {fileID: 2028027972258744203, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7735324619395476212}
   m_SourcePrefab: {fileID: 100100000, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
 --- !u!1 &2513498621446212074 stripped
 GameObject:
@@ -494,32 +495,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleAnimator: {fileID: 2649007469529682405}
---- !u!1 &6384781533069912969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2028027972258744203, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-  m_PrefabInstance: {fileID: 4953480528617729026}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &7735324619395476212
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6384781533069912969}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.013335, y: 0.0005000016, z: 0.0039999983}
-  m_Center: {x: 0, y: -0.000000008018104, z: 0.0019999992}
 --- !u!1001 &6457000448521947775
 PrefabInstance:
   m_ObjectHideFlags: 0
