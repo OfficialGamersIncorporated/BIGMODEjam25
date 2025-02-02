@@ -17,5 +17,3 @@ public class TelekinesisInteractTarget : MonoBehaviour {
         return null;
     }
 }
-
-// big gay balls

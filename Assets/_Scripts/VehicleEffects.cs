@@ -102,4 +102,9 @@ public class VehicleEffects : MonoBehaviour {
 
         return averageRadius;
     }
+
+    private void OnDisable()
+    {
+        engineSound.enabled = false;
+    }
 }

@@ -5,6 +5,8 @@ public class EnemyHealth : MonoBehaviour
     LevelManager levelManager;
 
     [SerializeField] GameObject upgradeSpawnPoint;
+    public TelekinesisInteractTarget dummyUpgradeInteract;
+    public GameObject dummyUpgradeGo;
 
     DamageOnContact damageOnContact;
     EnemyMovementV2 enemyMovement;
@@ -35,8 +37,12 @@ public class EnemyHealth : MonoBehaviour
 
         if (LastAlive && !levelManager.UpgradeHasSpawned)
         {
-            GameObject spawnedUpgrade = Instantiate(levelManager.upgradePrefab, new Vector3(upgradeSpawnPoint.transform.position.x, upgradeSpawnPoint.transform.position.y + 1, upgradeSpawnPoint.transform.position.z), Quaternion.identity);
+            dummyUpgradeGo.SetActive(true);
+
+
             levelManager.UpgradeHasSpawned = true;
+            dummyUpgradeInteract.PrefabSpawnOnGrab = levelManager.upgradePrefab.GetComponent<Rigidbody>();
+
             levelManager.AllEnemiesDefeated.Invoke();
         }
 
