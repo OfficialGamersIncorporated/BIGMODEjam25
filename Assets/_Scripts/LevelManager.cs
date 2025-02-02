@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> EnemyCarsList = new();
 
     int numberOfEnemies;
-    bool upgradeHasSpawned = false;
+    public bool UpgradeHasSpawned = false;
 
 
     private void Awake()

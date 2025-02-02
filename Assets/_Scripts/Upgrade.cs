@@ -61,7 +61,6 @@ public class Upgrade : MonoBehaviour
         while (currentFloat > animEnd)
         {
             currentFloat = mesh.material.GetFloat("_UnburntAlpha");
-            print(currentFloat);
             mesh.material.SetFloat("_UnburntAlpha", Mathf.MoveTowards(currentFloat, animEnd, animationSpeed * Time.deltaTime));
             yield return new WaitForEndOfFrame();
         }

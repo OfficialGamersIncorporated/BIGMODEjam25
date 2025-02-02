@@ -25,17 +25,6 @@ public class EnemyHealth : MonoBehaviour
         effects = gameObject.GetComponent<VehicleEffects>();
     }
 
-    void Update()
-    {
-        
-    }
-
-
-    // if last
-    // get cig
-    // spawn cig
-    // die
-
     public void Die()
     {
         damageOnContact.enabled = false;
@@ -44,10 +33,10 @@ public class EnemyHealth : MonoBehaviour
         effects.enabled = false;
         gameObject.GetComponent<Rigidbody>().linearDamping = 5;
 
-        if (LastAlive)
+        if (LastAlive && !levelManager.UpgradeHasSpawned)
         {
-            GameObject spawnedUpgrade = Instantiate(levelManager.upgradePrefab, transform);
-
+            GameObject spawnedUpgrade = Instantiate(levelManager.upgradePrefab, new Vector3(upgradeSpawnPoint.transform.position.x, upgradeSpawnPoint.transform.position.y + 1, upgradeSpawnPoint.transform.position.z), Quaternion.identity);
+            levelManager.UpgradeHasSpawned = true;
         }
 
         levelManager.EnemyCarsList.Remove(gameObject);

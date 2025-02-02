@@ -310,6 +310,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1943133251978071841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3090088810184499662}
+  m_Layer: 11
+  m_Name: UpgradeSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3090088810184499662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943133251978071841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.06488062, y: -0, z: -0, w: 0.99789304}
+  m_LocalPosition: {x: 0, y: 0.063, z: 1.007}
+  m_LocalScale: {x: 0.72, y: 0.45000002, z: 0.93}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 879063483217064804}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1979889191691057548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Engine
       objectReference: {fileID: 0}
+    - target: {fileID: 594885908346966753, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7779743736318209858, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1320,6 +1355,9 @@ PrefabInstance:
       addedObject: {fileID: 7109024611789958054}
     - targetCorrespondingSourceObject: {fileID: 7875250480878344815, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3090088810184499662}
+    - targetCorrespondingSourceObject: {fileID: 7875250480878344815, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8932337917037642225}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
@@ -1360,7 +1398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698ebdf141d52114a9e93cbed51c6630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSpawnPoint: {fileID: 0}
+  upgradeSpawnPoint: {fileID: 1943133251978071841}
   LastAlive: 0
 --- !u!114 &-7680209239170865849
 MonoBehaviour:
