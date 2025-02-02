@@ -5,6 +5,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] Vehicle vehicle;
     [SerializeField] Telekensis telekensis;
     [SerializeField] GameObject[] wheels;
+    public GameObject upgradePos;
 
     private static UpgradeManager _instance;
     public static UpgradeManager Instance

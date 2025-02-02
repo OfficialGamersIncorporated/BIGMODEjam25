@@ -30,7 +30,7 @@ public class BonusUpgrade : MonoBehaviour
         if (other.gameObject == mcGuffin && !upgradeGiven)
         {
             triggered = true;
-            Debug.Log("HOLY FREAK YOU DID IT");
+            Debug.Log("MCGUFFIN IN");
         }
     }
 

@@ -4,7 +4,7 @@ public class DamageOnContact : MonoBehaviour
 {
     public float hitCooldown = 0.25f;
     float hitTimer = 0;
-    bool canHit = true;
+    public bool canHit = true;
     public float minVelocity = 1;
     float linearVelocity;
 
