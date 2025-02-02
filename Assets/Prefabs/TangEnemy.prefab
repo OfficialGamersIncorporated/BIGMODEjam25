@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 2956996388771658989}
     - target: {fileID: 1239844873172814233, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: motorized
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1239844873172814233, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: wheelModel
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1680914724336467981, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: motorized
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1680914724336467981, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       propertyPath: wheelModel
@@ -220,11 +220,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7875250480878344815, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
   m_PrefabInstance: {fileID: 7023800137781733643}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1223725407004886550 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8179107315680833309, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-  m_PrefabInstance: {fileID: 7023800137781733643}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1376438855864192148 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
@@ -298,21 +293,28 @@ AudioLowPassFilter:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &3739729482202461122 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5953685197263887049, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+--- !u!114 &5302924977153622062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2949377446850865445, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
   m_PrefabInstance: {fileID: 7023800137781733643}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4317484032784563496 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6526637081829741603, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d336908b827c17244a98650843373818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8514690663866788102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1680914724336467981, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
   m_PrefabInstance: {fileID: 7023800137781733643}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6986556758105802161 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 111659082625166522, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
-  m_PrefabInstance: {fileID: 7023800137781733643}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d336908b827c17244a98650843373818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7287648029316910157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -554,9 +556,9 @@ MonoBehaviour:
   GrabbedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4317484032784563496}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 5302924977153622062}
+        m_TargetAssemblyTypeName: WheelControl, Assembly-CSharp
+        m_MethodName: set_isFlat
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -564,7 +566,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   DestroyOnGrab: 1
 --- !u!1 &522797885543830551 stripped
@@ -609,9 +611,9 @@ MonoBehaviour:
   GrabbedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3739729482202461122}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 5302924977153622062}
+        m_TargetAssemblyTypeName: WheelControl, Assembly-CSharp
+        m_MethodName: set_isFlat
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -619,7 +621,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   DestroyOnGrab: 1
 --- !u!4 &1642379619752221176 stripped
@@ -745,9 +747,9 @@ MonoBehaviour:
   GrabbedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1223725407004886550}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 8514690663866788102}
+        m_TargetAssemblyTypeName: WheelControl, Assembly-CSharp
+        m_MethodName: set_isFlat
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -755,7 +757,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   DestroyOnGrab: 1
 --- !u!1 &6002000003055801081 stripped
@@ -800,9 +802,9 @@ MonoBehaviour:
   GrabbedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6986556758105802161}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 5302924977153622062}
+        m_TargetAssemblyTypeName: WheelControl, Assembly-CSharp
+        m_MethodName: set_isFlat
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -810,7 +812,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   DestroyOnGrab: 1
 --- !u!4 &6114797428571387021 stripped
