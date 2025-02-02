@@ -499,6 +499,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToriGate
       objectReference: {fileID: 0}
+    - target: {fileID: 5785940368627370500, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+      propertyPath: TargetScene
+      value: 
+      objectReference: {fileID: 102900000, guid: a1e3f0e02176e7449bf8ab5f6c403a5b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
