@@ -44,7 +44,6 @@ public class DamageOnContact : MonoBehaviour
     {
         if (!canHit)
         {
-            print("ON COOLDOWN");
             return;
         }
         else 
@@ -56,7 +55,6 @@ public class DamageOnContact : MonoBehaviour
             if (DestroyOnDamage) Destroy(gameObject);
 
             canHit = false;
-            print("HIT: " + collision.gameObject.name);
         }
     }
 }

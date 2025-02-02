@@ -1036,21 +1036,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 879063483217064804}
     m_Modifications:
+    - target: {fileID: 214741801179850263, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
+      propertyPath: DestroyOnGrab
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 214741801179850263, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
+      propertyPath: PrefabSpawnOnGrab
+      value: 
+      objectReference: {fileID: 9135990267922626371, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
+    - target: {fileID: 214741801179850263, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
+      propertyPath: GrabbedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2089512330700000826}
     - target: {fileID: 594885908346966753, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
       propertyPath: m_Name
       value: Engine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779743736318209858, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779743736318209858, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779743736318209858, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 7779743736318209858, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1092,36 +1092,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9135990267922626371, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9135990267922626371, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 594885908346966753, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8431513872097056824}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
 --- !u!1 &1747480372535442514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 594885908346966753, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
   m_PrefabInstance: {fileID: 1153266438129659571}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8431513872097056824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747480372535442514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753f5ec9c6a1446429f42d09568494c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PrefabSpawnOnGrab: {fileID: 0}
-  GrabbedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  DestroyOnGrab: 0
 --- !u!4 &8932337917037642225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7779743736318209858, guid: 88c410581c02ca147a5b7d02e5293928, type: 3}
@@ -1339,9 +1324,12 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: 2
-      addedObject: {fileID: -7680209239170865849}
+      addedObject: {fileID: 2089512330700000826}
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: 3
+      addedObject: {fileID: -7680209239170865849}
+    - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
+      insertIndex: 4
       addedObject: {fileID: 2814250224140255893}
     - targetCorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
       insertIndex: -1
@@ -1360,6 +1348,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8242602005101897119, guid: 08670880d661eb243a2aea4cf2ad864e, type: 3}
   m_PrefabInstance: {fileID: 7023800137781733643}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2089512330700000826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376438855864192148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698ebdf141d52114a9e93cbed51c6630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeSpawnPoint: {fileID: 0}
+  LastAlive: 0
 --- !u!114 &-7680209239170865849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,7 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a378872ba83e2409cbadbaaf392d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCooldown: 0.5
+  hitCooldown: 1
   canHit: 1
   minVelocity: 3.5
   DestroyOnDamage: 0
@@ -1895,7 +1897,19 @@ MonoBehaviour:
   PrefabSpawnOnGrab: {fileID: -7025088956695772722, guid: a4b6fed7f26b49942b8300c31616801e, type: 3}
   GrabbedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1747480372535442514}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   DestroyOnGrab: 1
 --- !u!1 &4985168674969693831 stripped
 GameObject:

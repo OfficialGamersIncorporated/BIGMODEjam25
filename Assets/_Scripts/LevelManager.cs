@@ -1,18 +1,49 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] GameObject upgradePrefab;
+    private static LevelManager _instance;
+    public static LevelManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                Debug.LogError("LevelManager is null");
+            return _instance;
+        }
+    }
 
-    GameObject[] enemyCars;
+    public GameObject upgradePrefab;
+
+    GameObject[] tempGOs;
+    public List<GameObject> EnemyCarsList = new();
+
+    int numberOfEnemies;
+    bool upgradeHasSpawned = false;
+
+
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     void Start()
     {
-        enemyCars = GameObject.FindGameObjectsWithTag("Enemy");
+        tempGOs = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject go in tempGOs)
+        {
+            EnemyCarsList.Add(go);
+        }
     }
 
     void Update()
     {
-        
+        numberOfEnemies = EnemyCarsList.Count;
+
+        if (numberOfEnemies == 1)
+        {
+            EnemyCarsList[0].GetComponent<EnemyHealth>().LastAlive = true;
+        }
     }
 }
