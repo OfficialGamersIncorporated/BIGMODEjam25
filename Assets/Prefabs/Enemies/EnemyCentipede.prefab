@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 4038691100589343619}
   - component: {fileID: 5012322499614755870}
   m_Layer: 7
-  m_Name: Centipede
+  m_Name: EnemyCentipede
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
