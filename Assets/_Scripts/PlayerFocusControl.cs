@@ -1,6 +1,7 @@
 using System.Resources;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerFocusControl : MonoBehaviour {
 
@@ -28,6 +29,7 @@ public class PlayerFocusControl : MonoBehaviour {
     InputAction sprintAction;
     InputAction jumpAction;
     //InputAction interactAction;
+    InputAction restartAction;
 
     void Awake()
     {
@@ -51,6 +53,7 @@ public class PlayerFocusControl : MonoBehaviour {
         sprintAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
         //interactAction = InputSystem.actions.FindAction("Interact");
+        restartAction = InputSystem.actions.FindAction("Restart");
 
 
     }
@@ -72,6 +75,12 @@ public class PlayerFocusControl : MonoBehaviour {
         //    else
         //        playerFocus = PlayerFocus.OnFoot;
         //}
+
+        if (restartAction.WasPressedThisFrame())
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
 
         if (playerFocus != lastPlayerFocus){
             RefreshCameraTarget();
