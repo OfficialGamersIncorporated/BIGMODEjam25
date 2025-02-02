@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PowerTest : MonoBehaviour
+public class PowerManager : MonoBehaviour
 {
     
     public Vector3 pointerPos;
