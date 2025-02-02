@@ -683,7 +683,7 @@ PrefabInstance:
     - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
       propertyPath: upgradePrefab
       value: 
-      objectReference: {fileID: 3264872098302494923, guid: 0a781238373496244b0bb783899784bd, type: 3}
+      objectReference: {fileID: 1418019454708129904, guid: f1057a922aefd854b95c438387475c88, type: 3}
     - target: {fileID: 3980700469326533368, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1371,6 +1371,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1305506765}
   - {fileID: 203844589}
   - {fileID: 1370388729}
   - {fileID: 1389407633}
@@ -1381,7 +1382,6 @@ SceneRoots:
   - {fileID: 1000401611}
   - {fileID: 48585990}
   - {fileID: 1594383583}
-  - {fileID: 1305506765}
   - {fileID: 2052758688}
   - {fileID: 664673353}
   - {fileID: 499854284}
