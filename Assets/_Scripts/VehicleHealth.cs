@@ -42,6 +42,7 @@ public class VehicleHealth : MonoBehaviour {
     }
 }
 
+#if (UNITY_EDITOR)
 [CustomEditor(typeof(VehicleHealth))]
 public class VehicleHealthEditor : Editor {
     public override void OnInspectorGUI() {
@@ -56,3 +57,4 @@ public class VehicleHealthEditor : Editor {
         }
     }
 }
+#endif
