@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GraphicsTest.unity
     guid: f4aa6abc6e028db439af1f6c8051756b
   - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: 5882042f59fc0164d8942e66dd3f9702
+  - enabled: 1
     path: Assets/Scenes/EnemiesTest.unity
     guid: c8eed746e4c46794dbe332e2684380e9
   - enabled: 1
