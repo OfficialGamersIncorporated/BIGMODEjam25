@@ -53,9 +53,9 @@ public class EnemyMovementV2 : MonoBehaviour
     float throttleGoal;
 
     
-    enum MovementState { None, Front, Back, Left, Right };
+    public enum MovementState { None, Front, Back, Left, Right };
 
-    MovementState movementState = MovementState.None;
+    public MovementState moveState = MovementState.None;
 
 
     void Start()
@@ -117,7 +117,7 @@ public class EnemyMovementV2 : MonoBehaviour
             {
                 if (front)
                 {
-                    if (movementState != MovementState.Front)
+                    if (moveState != MovementState.Front)
                     {
                         EnterFront();
                     }
@@ -131,7 +131,7 @@ public class EnemyMovementV2 : MonoBehaviour
                 }
                 else if (back)
                 {
-                    if (movementState != MovementState.Back)
+                    if (moveState != MovementState.Back)
                     {
                         EnterBack();
                     }
@@ -139,42 +139,41 @@ public class EnemyMovementV2 : MonoBehaviour
 
                 if (left)
                 {
-                    if (movementState != MovementState.Left)
+                    if (moveState != MovementState.Left)
                     {
                         EnterLeft();
                     }
                 }
                 else if (right)
                 {
-                    if (movementState != MovementState.Right)
+                    if (moveState != MovementState.Right)
                     {
                         EnterRight();
                     }
                 }
-
-                moveValue.x = Mathf.MoveTowards(moveValue.x, steeringGoal, steerSpeed * Time.deltaTime);
-                moveValue.y = Mathf.MoveTowards(moveValue.y, throttleGoal, throttleSpeed * Time.deltaTime);
-
-                moveValue.x = Mathf.Clamp(moveValue.x, -1, 1);
-                moveValue.y = Mathf.Clamp(moveValue.y, -1, 1);
-
-                vehicleControl.ThrottleInput = moveValue.y;
-                vehicleControl.SteeringInput = moveValue.x;
-                vehicleControl.UrgencyInput = sprintValue;
-                vehicleControl.canBrakeAsReverse = true;
             }
             else
             {
+                moveState = MovementState.None;
                 moveValue = Vector2.zero;
 
                 vehicleControl.SteeringInput = 0;
                 vehicleControl.ThrottleInput = 0;
-                vehicleControl.BrakeInput = 1;
-                vehicleControl.UrgencyInput = false;
-                vehicleControl.canBrakeAsReverse = false;
+                //vehicleControl.BrakeInput = 1;
+                //vehicleControl.UrgencyInput = false;
+                //vehicleControl.canBrakeAsReverse = false;
             }
 
-            
+            moveValue.x = Mathf.MoveTowards(moveValue.x, steeringGoal, steerSpeed * Time.deltaTime);
+            moveValue.y = Mathf.MoveTowards(moveValue.y, throttleGoal, throttleSpeed * Time.deltaTime);
+
+            moveValue.x = Mathf.Clamp(moveValue.x, -1, 1);
+            moveValue.y = Mathf.Clamp(moveValue.y, -1, 1);
+
+            vehicleControl.ThrottleInput = moveValue.y;
+            vehicleControl.SteeringInput = moveValue.x;
+            vehicleControl.UrgencyInput = sprintValue;
+            vehicleControl.canBrakeAsReverse = true;
         }
         else
         {
@@ -201,12 +200,12 @@ public class EnemyMovementV2 : MonoBehaviour
 
     void EnterFront()
     {
-        movementState = MovementState.Front;
+        moveState = MovementState.Front;
         throttleGoal = 1;
     }
     void EnterBack()
     {
-        movementState = MovementState.Back;
+        moveState = MovementState.Back;
         throttleGoal = -1;
         coin = Random.Range(0, 2);
         if (coin == 0)
@@ -220,13 +219,13 @@ public class EnemyMovementV2 : MonoBehaviour
     }
     void EnterLeft()
     {
-        movementState = MovementState.Left;
+        moveState = MovementState.Left;
         steeringGoal = -1;
         throttleGoal = 0.50f;
     }
     void EnterRight()
     {
-        movementState = MovementState.Right;
+        moveState = MovementState.Right;
         steeringGoal = 1;
         throttleGoal = 0.50f;
     }
