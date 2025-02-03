@@ -3,7 +3,12 @@ guid: ae702a2579d2aba4a880cbb4809843be
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frog_Pedestal
+    second: {fileID: 2100000, guid: b13208bd66d6325449166ebe1cd34144, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
