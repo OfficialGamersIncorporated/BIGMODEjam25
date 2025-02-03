@@ -99,4 +99,35 @@ public class PersistentFeller : MonoBehaviour
                 break;
         }
     }
+
+    public float GetTimer()
+    {
+        return timer;
+    }
+
+    public int GetTireCount()
+    {
+        return TiresCollected;
+    }
+
+    public bool GetBounus1()
+    {
+        return bonus1Achieved;
+    }
+    public bool GetBounus2()
+    {
+        return bonus2Achieved;
+    }
+    public bool GetBounus3()
+    {
+        return bonus3Achieved;
+    }
+    public bool GetBounus4()
+    {
+        return bonus4Achieved;
+    }
+    public bool GetBounus5()
+    {
+        return bonus5Achieved;
+    }
 }
