@@ -171,6 +171,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToriGate
       objectReference: {fileID: 0}
+    - target: {fileID: 5649075969003285868, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649075969003285868, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649075969003285868, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 36.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785940368627370500, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
+      propertyPath: SceneName
+      value: SecondScene
+      objectReference: {fileID: 0}
     - target: {fileID: 5785940368627370500, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
       propertyPath: TargetScene
       value: 
@@ -312,10 +328,6 @@ PrefabInstance:
     - target: {fileID: 3406000737035247096, guid: cea2ab105249b5c4cba3a79802597e3f, type: 3}
       propertyPath: m_Name
       value: PersistentFeller
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303228590562408152, guid: cea2ab105249b5c4cba3a79802597e3f, type: 3}
-      propertyPath: wahoo
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5658819715653521364, guid: cea2ab105249b5c4cba3a79802597e3f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -573,7 +585,7 @@ PrefabInstance:
     - target: {fileID: 361346304412706634, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
       propertyPath: upgradePrefab
       value: 
-      objectReference: {fileID: 3264872098302494923, guid: 0a781238373496244b0bb783899784bd, type: 3}
+      objectReference: {fileID: 1484019090979402551, guid: 9dd03058b3fbbb647b3199ad7bad0fa7, type: 3}
     - target: {fileID: 3980700469326533368, guid: abc1cf6e30636714cac43dd49612aeeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
