@@ -24,7 +24,8 @@ public class PersistentFeller : MonoBehaviour
     public static bool bonus5Achieved = false;
     bool debugBonus5Achieved;
 
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI tiresText;
 
 
     private static PersistentFeller _instance;
@@ -41,13 +42,12 @@ public class PersistentFeller : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        text.text = ("0.00");
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
-        text.text = ("Time: ") + Math.Round(timer, 2, MidpointRounding.AwayFromZero);
+        timerText.text = ("Time: ") + Math.Round(timer, 2, MidpointRounding.AwayFromZero);
 
         if (debug)
         {
@@ -64,6 +64,7 @@ public class PersistentFeller : MonoBehaviour
     public void IncreaseTireCount()
     {
         TiresCollected++;
+        tiresText.text = ("Tires: ") + TiresCollected;
     }
 
     public void StoreBonus(BonusUpgrade.BonusID IDParam)
