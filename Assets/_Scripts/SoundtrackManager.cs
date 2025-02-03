@@ -7,20 +7,44 @@ public class SoundtrackManager : MonoBehaviour {
 
     List<AudioSource> overlappingAudioSources = new List<AudioSource>();
 
-    void Start() {
+    AudioSource currentlyPlayingSoundtrack = null;
 
+    void Start() {
+        StopPlayingTrack();
     }
-    private void OnTriggerStay(Collider other) {
+    private void OnTriggerEnter(Collider other) {
+        if(currentlyPlayingSoundtrack != null) return;
+
         if(!other.gameObject.CompareTag("SoundtrackZone")) return;
         AudioSource sound = other.GetComponent<AudioSource>();
         if(!sound) return;
 
-        // collect
-        overlappingAudioSources.Add(sound);
+        StartPlayingTrack(sound);
     }
-    private void FixedUpdate() {
+    private void OnTriggerExit(Collider other) {
+        if(!other.gameObject.CompareTag("SoundtrackZone")) return;
+        AudioSource sound = other.GetComponent<AudioSource>();
+        if(!sound) return;
 
-        // reset the list for next frame
-        overlappingAudioSources = new List<AudioSource>();
+        if(currentlyPlayingSoundtrack != sound) return;
+
+        StopPlayingTrack();
+    }
+
+    public void StartPlayingTrack(AudioSource soundtrack) {
+        StopPlayingTrack();
+        print("Playing soundtrack " + soundtrack.gameObject.name);
+        currentlyPlayingSoundtrack = soundtrack;
+        soundtrack.Play();
+
+        DefaultSoundtrack.Stop();
+    }
+    public void StopPlayingTrack() {
+        print("Stopping playing current track (if any)");
+        if(currentlyPlayingSoundtrack)
+            currentlyPlayingSoundtrack.Stop();
+        currentlyPlayingSoundtrack = null;
+
+        DefaultSoundtrack.Play();
     }
 }
