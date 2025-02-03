@@ -45,10 +45,17 @@ public class PersistentFeller : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        //timerText.text = ("Time: ") + Math.Round(timer, 2, MidpointRounding.AwayFromZero);
+        timerText.text = ("Time: ") + TimeSpan.FromSeconds(timer).ToString("mm:ss");
+        tiresText.text = ("Tires: ") + TiresCollected;
+    }
+
     private void Update()
     {
         timer += Time.deltaTime;
-        timerText.text = ("Time: ") + Math.Round(timer, 2, MidpointRounding.AwayFromZero);
+        timerText.text = ("Time: ") + TimeSpan.FromSeconds(Mathf.Round(timer)).ToString("mm:ss");
 
         if (debug)
         {
