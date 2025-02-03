@@ -58,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3535488150397726590, guid: 0a781238373496244b0bb783899784bd, type: 3}
       propertyPath: DisplayText
-      value: You got four-wheel drive!
+      value: You got a stronger motor! +max torque, + max speed
       objectReference: {fileID: 0}
     - target: {fileID: 3535488150397726590, guid: 0a781238373496244b0bb783899784bd, type: 3}
       propertyPath: motorTorque
-      value: 3500
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 3535488150397726590, guid: 0a781238373496244b0bb783899784bd, type: 3}
       propertyPath: stiffnessMult
