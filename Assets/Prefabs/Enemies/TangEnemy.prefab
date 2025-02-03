@@ -1444,7 +1444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeSpawnPoint: {fileID: 1943133251978071841}
-  dummyUpgradeInteract: {fileID: 6010772777410802044}
+  dummyUpgradeInteract: {fileID: 7219156676106978104}
   dummyUpgradeGo: {fileID: 2155259086049131611}
   LastAlive: 0
 --- !u!114 &-7680209239170865849
@@ -2168,18 +2168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DUMMY
       objectReference: {fileID: 0}
-    - target: {fileID: 7841507860145183618, guid: fe42f54d9d71e9147b7ecc966d5fc452, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8110162177338096695, guid: fe42f54d9d71e9147b7ecc966d5fc452, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7841507860145183618, guid: fe42f54d9d71e9147b7ecc966d5fc452, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6010772777410802044}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe42f54d9d71e9147b7ecc966d5fc452, type: 3}
 --- !u!4 &1631099200182970081 stripped
 Transform:
@@ -2191,11 +2183,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7841507860145183618, guid: fe42f54d9d71e9147b7ecc966d5fc452, type: 3}
   m_PrefabInstance: {fileID: 8159296992208955353}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6010772777410802044
+--- !u!114 &7219156676106978104 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1518906997967693025, guid: fe42f54d9d71e9147b7ecc966d5fc452, type: 3}
+  m_PrefabInstance: {fileID: 8159296992208955353}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2155259086049131611}
   m_Enabled: 1
@@ -2203,8 +2194,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753f5ec9c6a1446429f42d09568494c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabSpawnOnGrab: {fileID: 0}
-  GrabbedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  DestroyOnGrab: 1

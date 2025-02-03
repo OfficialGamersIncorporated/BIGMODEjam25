@@ -6,6 +6,8 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] GameObject upgradeSpawnPoint;
     public TelekinesisInteractTarget dummyUpgradeInteract;
+
+    [Tooltip("This game object gets assigned by level manager when last car")]
     public GameObject dummyUpgradeGo;
 
     DamageOnContact damageOnContact;
@@ -37,11 +39,20 @@ public class EnemyHealth : MonoBehaviour
 
         if (LastAlive && !levelManager.UpgradeHasSpawned)
         {
-            dummyUpgradeGo.SetActive(true);
+            if (dummyUpgradeGo != null)
+            {
+                dummyUpgradeGo.SetActive(true);
+                
+                dummyUpgradeInteract.PrefabSpawnOnGrab = levelManager.upgradePrefab.GetComponent<Rigidbody>();
+            }
+            else
+            {
+                print("No upgrade :((");
+            }
 
 
             levelManager.UpgradeHasSpawned = true;
-            dummyUpgradeInteract.PrefabSpawnOnGrab = levelManager.upgradePrefab.GetComponent<Rigidbody>();
+
 
             levelManager.AllEnemiesDefeated.Invoke();
         }
