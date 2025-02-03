@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6443062609355086286
 Transform:
@@ -212,7 +212,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &797111332640381995
 Transform:
@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fd0b34fbb5f2c4fbfc7c10c300bc50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneName: 
 --- !u!1 &8613749791854566841
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +333,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &317785938861371460
 Transform:
@@ -453,6 +454,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5f87bf7b6aca6014ab004ec49cd4bf54, type: 3}
       propertyPath: m_Name
       value: ToriGate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5f87bf7b6aca6014ab004ec49cd4bf54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
