@@ -30,7 +30,6 @@ public class BonusUpgrade : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject == mcGuffin.gameObject && !bonusStored) {
             triggered = true;
-            Debug.Log("MCGUFFIN IN");
         }
     }
 
@@ -38,7 +37,6 @@ public class BonusUpgrade : MonoBehaviour {
         if(other.gameObject == mcGuffin.gameObject && !bonusStored) {
             triggered = false;
             tempWaitTimer = 0;
-            Debug.Log("MCGUFFIN REMOVED");
         }
     }
 
