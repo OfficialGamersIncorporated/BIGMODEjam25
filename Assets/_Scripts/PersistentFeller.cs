@@ -12,6 +12,7 @@ public class PersistentFeller : MonoBehaviour
 
     public static int TiresCollected;
     int debugTiresCollected;
+    public int tempTiresHeld;
 
     public static bool bonus1Achieved = false;
     bool debugBonus1Achieved;
@@ -61,9 +62,9 @@ public class PersistentFeller : MonoBehaviour
         }
     }
 
-    public void IncreaseTireCount()
+    public void IncreaseTireCount(int tireCountParam)
     {
-        TiresCollected++;
+        TiresCollected += tireCountParam;
         tiresText.text = ("Tires: ") + TiresCollected;
     }
 
