@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Telekinetic
   - Enemy
+  - SoundtrackZone
   layers:
   - Default
   - TransparentFX
