@@ -78,7 +78,7 @@ public class TiresHeld : MonoBehaviour
         //    TireList.RemoveAt(item);
         //}
 
-        return tiresIGot;
+        return TireList.Count;
     }
 
     private void OnTriggerEnter(Collider other)
