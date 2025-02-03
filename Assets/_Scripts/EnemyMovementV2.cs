@@ -243,9 +243,8 @@ public class EnemyMovementV2 : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(predictTarget, 2);
 
-
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(transform.position, targetRange / 2);
         }
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, targetRange);
     }
 }

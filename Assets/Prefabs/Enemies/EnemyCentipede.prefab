@@ -697,7 +697,7 @@ MonoBehaviour:
   steerSpeed: 10
   throttleSpeed: 10
   alwaysHasTarget: 1
-  targetRange: 500
+  targetRange: 150
   closeRange: 5
   moveState: 0
 --- !u!114 &2873631534284484327
