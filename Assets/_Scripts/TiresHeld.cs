@@ -9,6 +9,22 @@ public class TiresHeld : MonoBehaviour
 
     PersistentFeller persistentFeller;
 
+    private static TiresHeld _instance;
+    public static TiresHeld Instance
+    {
+        get
+        {
+            if (_instance == null)
+                Debug.LogError("TiresHeld is null");
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     private void Start()
     {
         persistentFeller = PersistentFeller.Instance;
@@ -38,6 +54,20 @@ public class TiresHeld : MonoBehaviour
     //    }
     //}
 
+    public int SortTireList()
+    {
+        foreach (var item in TireList)
+        {
+            if (item == null)
+            {
+                TireList.Remove(item.gameObject);
+                tiresIGot--;
+                //persistentFeller.tempTiresHeld--;
+            }
+        }
+        return tiresIGot;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -45,7 +75,7 @@ public class TiresHeld : MonoBehaviour
         {
             TireList.Add(itsATire.gameObject);
             tiresIGot++;
-            persistentFeller.tempTiresHeld++;
+            //persistentFeller.tempTiresHeld++;
         }
     }
 
@@ -55,7 +85,7 @@ public class TiresHeld : MonoBehaviour
         {
             TireList.Remove(itsATire.gameObject);
             tiresIGot--;
-            persistentFeller.tempTiresHeld--;
+            //persistentFeller.tempTiresHeld--;
         }
     }
 }

@@ -12,7 +12,8 @@ public class PersistentFeller : MonoBehaviour
 
     public static int TiresCollected;
     int debugTiresCollected;
-    public int tempTiresHeld;
+
+    TiresHeld tiresHeld;
 
     public static bool bonus1Achieved = false;
     bool debugBonus1Achieved;
@@ -47,15 +48,17 @@ public class PersistentFeller : MonoBehaviour
 
     private void Start()
     {
+        tiresHeld = TiresHeld.Instance;
+
         //timerText.text = ("Time: ") + Math.Round(timer, 2, MidpointRounding.AwayFromZero);
-        timerText.text = ("Time: ") + TimeSpan.FromSeconds(timer).ToString("mm:ss");
+        timerText.text = ("Time: ") + TimeSpan.FromSeconds(Mathf.Round(timer)).ToString(@"mm\:ss");
         tiresText.text = ("Tires: ") + TiresCollected;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
-        timerText.text = ("Time: ") + TimeSpan.FromSeconds(Mathf.Round(timer)).ToString("mm:ss");
+        timerText.text = ("Time: ") + TimeSpan.FromSeconds(Mathf.Round(timer)).ToString(@"mm\:ss");
 
         if (debug)
         {
@@ -69,9 +72,9 @@ public class PersistentFeller : MonoBehaviour
         }
     }
 
-    public void IncreaseTireCount(int tireCountParam)
+    public void IncreaseTireCount()
     {
-        TiresCollected += tireCountParam;
+        TiresCollected += tiresHeld.SortTireList();
         tiresText.text = ("Tires: ") + TiresCollected;
     }
 

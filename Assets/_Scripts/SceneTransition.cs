@@ -17,8 +17,7 @@ public class SceneTransition : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        persistentFeller.IncreaseTireCount(persistentFeller.tempTiresHeld);
-        persistentFeller.tempTiresHeld = 0;
+        persistentFeller.IncreaseTireCount();
 
 
         Rigidbody otherRB = other.GetComponentInParent<Rigidbody>();
