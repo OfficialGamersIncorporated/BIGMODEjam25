@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransition : MonoBehaviour {
+public class SceneTransition : MonoBehaviour
+{
+    bool loading = false;
 
     PersistentFeller persistentFeller;
 
@@ -17,13 +20,25 @@ public class SceneTransition : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        persistentFeller.IncreaseTireCount();
+        if (!loading)
+        {
+            loading = true;
+            persistentFeller.IncreaseTireCount();
 
 
-        Rigidbody otherRB = other.GetComponentInParent<Rigidbody>();
-        if(!otherRB.transform.CompareTag("Player")) return;
+            Rigidbody otherRB = other.GetComponentInParent<Rigidbody>();
+            if (!otherRB.transform.CompareTag("Player")) return;
 
-        if(SceneName != "") SceneManager.LoadScene(SceneName);
+            StartCoroutine(NextScene());
+        }
+
+    }
+
+    IEnumerator NextScene()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (SceneName != "") SceneManager.LoadScene(SceneName);
         else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        yield return null;
     }
 }

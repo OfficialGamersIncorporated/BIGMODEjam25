@@ -56,15 +56,26 @@ public class TiresHeld : MonoBehaviour
 
     public int SortTireList()
     {
+        List<int> removeList = new List<int>();
+        int index = 0;
         foreach (var item in TireList)
         {
+            
             if (item == null)
             {
-                TireList.Remove(item.gameObject);
+                removeList.Add(index);
+                //TireList.Remove(item.gameObject);
                 tiresIGot--;
                 //persistentFeller.tempTiresHeld--;
             }
+            index++;
         }
+
+        foreach (var item in removeList)
+        {
+            TireList.RemoveAt(item);
+        }
+
         return tiresIGot;
     }
 
