@@ -593,7 +593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5785940368627370500, guid: df55454b76a1f6b4893222c939e8d639, type: 3}
       propertyPath: SceneName
-      value: StartMenu
+      value: EndScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
